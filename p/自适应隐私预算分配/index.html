@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+<title>自适应隐私预算分配</title>
+
+<link rel='canonical' href='https://bobQAQ003/Kuka/p/%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
+
+<link rel="stylesheet" href="/Kuka/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="自适应隐私预算分配">
+<meta property='og:description' content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+<meta property='og:url' content='https://bobQAQ003/Kuka/p/%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
+<meta property='og:site_name' content='Kuka'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-23T19:00:59&#43;08:00'/><meta property='article:modified_time' content='2025-10-23T19:00:59&#43;08:00'/>
+<meta name="twitter:title" content="自适应隐私预算分配">
+<meta name="twitter:description" content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+    <link rel="shortcut icon" href="/Kuka/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Kuka/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Kuka/img/avatar_hu_611580edbb11e390.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Kuka">Kuka</a></h1>
+            <h2 class="site-description">Welcome</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Kuka/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页 | Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Kuka/%E5%85%B3%E4%BA%8E-about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于 | About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Kuka/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档 | Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Kuka/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索 | Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Kuka/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>技术链接 | Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://bobQAQ003/Kuka/en/" >English</option>
+                                
+                                    <option value="https://bobQAQ003/Kuka/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#1-按度数分布划分区间总隐私预算以区间">1. 按度数分布划分区间，总隐私预算以区间</a></li>
+        <li><a href="#2-拓扑重要性个性化总隐私预算以区间">2. 拓扑重要性个性化，总隐私预算以区间</a></li>
+        <li><a href="#3-上下文多臂赌博机cmab算法分配区间">3. 上下文多臂赌博机（CMAB）算法分配（区间）</a></li>
+        <li><a href="#4-探讨隐私预算的推荐值">4. 探讨隐私预算的推荐值</a></li>
+        <li><a href="#5-基于遗传算法ga的隐私预算分配">5. 基于遗传算法（GA）的隐私预算分配</a></li>
+        <li><a href="#6-基于隐私安全等级privacy-security-level-psl">6. 基于隐私安全等级（Privacy Security Level, PSL）</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Kuka/p/%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/">自适应隐私预算分配</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-10-23</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="1-按度数分布划分区间总隐私预算以区间">1. 按度数分布划分区间，总隐私预算以区间
+</h3><blockquote>
+<p>Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.</p>
+<p>Yuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.</p>
+</blockquote>
+<p>给出一个总体区间 $[ε_1, ε_2]$，再按<strong>节点度数</strong>把用户分桶，并把 $[ε_1, ε_2]$切成多个<strong>子区间</strong>；每个用户的“初始”隐私预算 $ε_s$ 会<strong>从对应子区间里随机采样</strong>（按指数分布采样），因此不同用户拿到的起始预算彼此不同</p>
+<p>根据度数的大小，我们可以将这些节点划分成几个区间。例如：</p>
+<ul>
+<li>区间1：度数小于等于 10</li>
+<li>区间2：度数大于 10 且小于等于 50</li>
+<li>区间3：度数大于 50</li>
+</ul>
+<p>根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设**$ε₁ = 0.1$<strong>，</strong>$ε₂ = 1$<strong>，并且使用</strong>指数分布**来决定隐私预算的具体值：</p>
+<ul>
+<li>对于区间1，为其分配较高的隐私预算（如接近**$ε₂ = 1$**）。</li>
+<li>对于区间，隐私预算会适中。</li>
+<li>对于区间3，隐私预算会较低（接近**$ε₁ = 0.1$**）。</li>
+</ul>
+<p>隐私预算的分配在度数区间的划分上使用了<strong>指数分布</strong>。其公式为：
+</p>
+$$
+\text{Sample from exponential distribution } f(y, \lambda) = \lambda e^{-\lambda y}, \, (y \geq 0)
+$$<p>
+之后用户用各自的 $ε_s$ 加噪：$\hat X_s=f(X_s)+\mathrm{Lap}(\Delta f/ε_s)$，</p>
+<blockquote>
+<p><strong>APPGNN</strong>按照<strong>节点度数</strong>划分为若干个区间，并将 <strong>隐私预算区间</strong> 对应划分，根据节点度数的 <strong>比例分布</strong>，将其 <strong>映射到指数分布的分位数区间</strong>，从中 <strong>采样出个性化的隐私预算</strong>。</p>
+</blockquote>
+<h3 id="2-拓扑重要性个性化总隐私预算以区间">2. 拓扑重要性个性化，总隐私预算以区间
+</h3><blockquote>
+<p>Lei D, Song Z, Yuan Y, et al. Achieving Personalized Privacy-Preserving Graph Neural Network via Topology Awareness[C]//Proceedings of the ACM on Web Conference 2025. 2025: 3552-3560.</p>
+</blockquote>
+<p>提出“邻接信息熵”（Adjacency Information Entropy, AIE）来衡量节点拓扑重要性，既考虑直连邻居也考虑间接关系：先算邻接度 $AD_u=\sum_{v\in \mathcal N_u} D_v$，再定义概率 $p_u=D_u/AD_v$，最后得信息熵式的 $AIE_u=-\sum_{v\in \mathcal N_u}(p_u\log_2 p_u),p_v$（式(4)–(6)）。重要性越高→隐私敏感度越高。</p>
+<p>将总预算区间 $[,\epsilon_b,\epsilon_e,]$ 按节点隐私敏感度分成 $M$ 个等级与对应<strong>子区间</strong>，并假设预算在该区间内<strong>服从指数分布</strong>（真实网络度分布常呈幂律，少数节点很重要）。通过指数分布分位点把 $[,\epsilon_b,\epsilon_e,]$ 切成 $(\epsilon_b,\epsilon_1],(\epsilon_1,\epsilon_2],\dots,(\epsilon_{M-2},\epsilon_e]$，切分边界用式(7)(8)的分位数关系确定；重要节点→分到<strong>更小的 $\epsilon$</strong>（更强保护/更大噪声），不太重要的节点→更大的 $\epsilon$（更少噪声）。每个节点最终<strong>从其子区间随机采样</strong>得到个性化预算 $\epsilon_i$。</p>
+<p>各节点用自己的 $\epsilon_i$ 做拉普拉斯机制：$\hat X_i=f(X_i)+\mathrm{Lap}(\Delta f/\epsilon_i)$（式(3)、(9)），并用<strong>随机响应</strong>扰动标签（式(12)），实现特征+标签双重保护。</p>
+<p>因不同邻居被加的噪声强度不同，直接平均会放大高噪声邻居的负面影响。论文据“<strong>越重要→预算越小→噪声越大</strong>”的链条，给重要邻居更小权重：
+</p>
+$$
+W_{u,v}=1+\frac{1}{D_u}-\frac{AIE_v}{\sum_{i\in Ner_u}AIE_{u,i}+AIE_u},
+$$<p>
+再做加权聚合（式(10)(11)）。这样能<strong>抑制差异化DP噪声</strong>对表示学习的影响。</p>
+<blockquote>
+<p><strong>TDP-GNN 通过拓扑结构识别节点重要性，划分为多个隐私敏感度等级，映射到指数分布的预算区间并采样个性化预算，再结合加权聚合抑制噪声。</strong></p>
+</blockquote>
+<h3 id="3-上下文多臂赌博机cmab算法分配区间">3. 上下文多臂赌博机（CMAB）算法分配（区间）
+</h3><blockquote>
+<p>Zhang X, Zhou Y, Hu M, et al. BGTplanner: Maximizing Training Accuracy for Differentially Private Federated Recommenders via Strategic Privacy Budget Allocation[J]. IEEE Transactions on Services Computing, 2025.</p>
+</blockquote>
+<ul>
+<li>
+<p>步骤 1：生成奖励的预测</p>
+<ul>
+<li>对于每个动作 $a_t$ 和上下文 $X_t$，BGTplanner使用高斯过程回归模型预测奖励 $r_t$：
+$$
+    \mu(z_t) = \text{GPR}(a_t, X_t)
+    $$</li>
+</ul>
+</li>
+<li>
+<p>步骤 2：计算动作的评分</p>
+<ul>
+<li>根据预测的奖励 $\mu(z_t)$，为每个可能的动作（隐私预算分配方案）计算一个<strong>评分</strong> $\beta_t(a)$，公式如下：</li>
+</ul>
+</li>
+</ul>
+$$
+\beta_t(a) = \mu(z_t) - \langle \epsilon_{\text{total}} - \epsilon_t, \lambda_t \rangle
+$$<p>​	其中，$\lambda_t$ 是用于<strong>长期隐私预算约束</strong>的拉格朗日乘子，确保在整个训练过程中不会超出总预算。</p>
+<ul>
+<li>步骤 3：选择最优的隐私预算分配方案
+<ul>
+<li>$\gamma$ 是<strong>探索和利用的权衡参数</strong>，控制着系统是否偏向于选择当前最优的动作（利用）或探索其他可能的动作。</li>
+<li>$A$ 是<strong>动作空间</strong>的大小，表示可能的隐私预算分配方案的数量。</li>
+</ul>
+</li>
+<li>步骤 4：更新隐私预算消耗
+<ul>
+<li>在每轮训练之后，BGTplanner通过<strong>隐私预算消耗函数</strong>来计算实际消耗的隐私预算 $\epsilon_t$，并更新剩余预算。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>假设我们有如下参数：</p>
+<ul>
+<li><strong>总隐私预算</strong> $\epsilon_{\text{total}} = 10$</li>
+<li><strong>隐私预算区间</strong>：$\epsilon_{\text{min}} = 1, \epsilon_{\text{max}} = 5$</li>
+<li>每轮的隐私预算分配动作是从区间 $[1, 5]$ 中选择的。</li>
+</ul>
+<p>在某个训练回合中，BGTplanner预测奖励为：
+</p>
+$$
+> \mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
+> $$<p>
+接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。</p>
+<p><strong>BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用</strong></p>
+</blockquote>
+<h3 id="4-探讨隐私预算的推荐值">4. 探讨隐私预算的推荐值
+</h3><blockquote>
+<p>Du W, Ma X, Dong W, et al. Calibrating privacy budgets for locally private graph neural networks[C]//2021 International Conference on Networking and Network Applications (NaNA). IEEE, 2021: 23-29.</p>
+</blockquote>
+<p>采用了 <strong>Multi-bit LDP Mechanism</strong> (LPGNN的方法)对用户特征进行扰动:</p>
+<p><strong>输入：</strong></p>
+<ul>
+<li>用户特征向量$ x∈[α,β]^d$</li>
+<li>隐私预算$\epsilon$</li>
+<li>控制参数 <em>m</em>（每次扰动的特征维度数）</li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul>
+<li>扰动后的特征向量 $ x∈{-1,0,1}^d$</li>
+</ul>
+<p>通过<strong>链路预测准确率</strong>和加入属性推断攻击后的<strong>F1-score值</strong>推荐隐私预算值</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">项目</th>
+          <th style="text-align: left">内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">目标</td>
+          <td style="text-align: left">在 LDP 保护的 GNN 中合理选择隐私预算 ε</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">方法</td>
+          <td style="text-align: left">利用属性推断攻击效果作为隐私度量，结合链路预测准确率评估效用</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">隐私机制</td>
+          <td style="text-align: left">Multi-bit LDP 机制，用户本地扰动特征，服务器无偏重构</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">推荐 ε 值</td>
+          <td style="text-align: left">0.5 ~ 1（视具体业务对隐私和效用的需求）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="5-基于遗传算法ga的隐私预算分配">5. 基于遗传算法（GA）的隐私预算分配
+</h3><blockquote>
+<p>Li Y, Song X, Tu Y, et al. GAPBAS: Genetic algorithm-based privacy budget allocation strategy in differential privacy K-means clustering algorithm[J]. Computers &amp; Security, 2024, 139: 103697.</p>
+</blockquote>
+<p>通过分析噪声对质心的影响，推导出 <strong>最小隐私预算$ε_m$</strong>：
+</p>
+$$
+ε_m=(\frac{200k^3d+(1+d)^2}{N^2}(1+ρ^2))^{1/2}
+$$<p>
+其中：</p>
+<ul>
+<li><em>k</em>：聚类数；<em>d</em>：数据维度；<em>N</em>：样本数量；<em>ρ</em>：噪声相关系数（通常取 0.225）；</li>
+</ul>
+<blockquote>
+<p>每轮预算必须满足：<em>$ε_t$</em>≥<em>$ε_m$</em>，否则噪声过大导致质心不收敛。</p>
+</blockquote>
+<ul>
+<li>每个个体是一个长度为 $T$ 的浮点数组：${ε_1,ε_2,&hellip;,ε_T}$</li>
+</ul>
+<blockquote>
+<p><strong>GAPBAS 将每轮隐私预算组合成序列，作为遗传算法的个体，在满足总预算和最小预算约束下，优化出使聚类效果（NICV）最优的预算分配策略。</strong></p>
+</blockquote>
+<h3 id="6-基于隐私安全等级privacy-security-level-psl">6. 基于隐私安全等级（Privacy Security Level, PSL）
+</h3><blockquote>
+<p>Shen Z, He S, Wang H, et al. A differential privacy budget allocation method combining privacy security level[J]. Journal of Communications and Information Networks, 2023, 8(1): 90-98.</p>
+</blockquote>
+<p>提出 <strong>PSL 方法</strong>：为每个位置分配一个“隐私安全等级”，并据此动态分配隐私预算 $ε$，实现 <strong>个性化、拓扑感知的隐私保护</strong>。</p>
+<p>步骤：</p>
+<ol>
+<li>
+<p>使用 <strong>P-series（p-级数）</strong> 为初始敏感位置分配隐私预算</p>
+<ul>
+<li>
+<p>使用 <strong>P-series</strong> 为初始敏感位置分配预算：
+</p>
+$$
+     \varepsilon_{m} = \frac{\varepsilon}{\zeta(p)} \times \frac{1}{m^{p}}, \quad m \in \mathbb{N}^{+}, \quad p > 1
+     $$<ul>
+<li>$\varepsilon$：总隐私预算；</li>
+<li>$\zeta(p)$：P级数收敛值（如 p=2 时，$\zeta(2)= π²/6$；</li>
+<li><em>m</em>：敏感位置编号（按重要性排序）；</li>
+<li>结果：重要位置（m 小）获得更大预算（更小噪声）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>根据 <strong>距离与节点度</strong> 为敏感点的邻居分配预算，并支持 <strong>动态时间调整</strong></p>
+<ul>
+<li>
+<p>PSL定义：
+</p>
+$$
+     \mathrm{PSL}(k_{m}) = \lambda \times \varepsilon_{m} = \lambda \times \frac{\varepsilon}{\zeta(p)} \times m^{p}
+     $$<ul>
+<li>PSL 与预算$\varepsilon$ 成反比；</li>
+<li>$\lambda$ 为调节参数;</li>
+<li>用于衡量位置的“隐私敏感度”。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>将 PSL 映射为隐私预算$ε$，满足 $\epsilon × PSL = \gamma$（$\gamma$ 为常数）</p>
+</li>
+</ol>
+<blockquote>
+<p>假设：</p>
+<ul>
+<li>敏感节点 $k_1$ 的 PSL = 0.6079；</li>
+<li>邻居 A 距离为 1，邻居 B 距离为 2；</li>
+<li>NPS = {A, B}；</li>
+</ul>
+<p>则：
+</p>
+$$
+> \mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
+> \\
+> \mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
+> $$<p>
+再映射回预算：
+</p>
+$$
+> \epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
+> , \\
+> \epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
+> $$<p>
+<strong>PSL 方法通过 P-series 为敏感位置分配递减预算，再结合距离与节点度为邻居分配个性化预算，并支持时间动态调整，实现“重要位置多留数据，敏感位置多加噪声”的精细化隐私保护。</strong></p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 KukaDams
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Kuka/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
