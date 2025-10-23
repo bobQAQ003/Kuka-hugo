@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>GNNs on Kuka</title>
+        <link>https://bobQAQ003/Kuka/categories/gnns/</link>
+        <description>Recent content in GNNs on Kuka</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>KukaDams</copyright>
+        <lastBuildDate>Thu, 23 Oct 2025 19:00:59 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka/categories/gnns/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>自适应隐私预算分配</title>
+        <link>https://bobQAQ003/Kuka/p/%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/</link>
+        <pubDate>Thu, 23 Oct 2025 19:00:59 +0800</pubDate>
+        
+        <guid>https://bobQAQ003/Kuka/p/%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/</guid>
+        <description>&lt;h3 id=&#34;1-按度数分布划分区间总隐私预算以区间&#34;&gt;1. 按度数分布划分区间，总隐私预算以区间
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.&lt;/p&gt;
+&lt;p&gt;Yuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;给出一个总体区间 $[ε_1, ε_2]$，再按&lt;strong&gt;节点度数&lt;/strong&gt;把用户分桶，并把 $[ε_1, ε_2]$切成多个&lt;strong&gt;子区间&lt;/strong&gt;；每个用户的“初始”隐私预算 $ε_s$ 会&lt;strong&gt;从对应子区间里随机采样&lt;/strong&gt;（按指数分布采样），因此不同用户拿到的起始预算彼此不同&lt;/p&gt;
+&lt;p&gt;根据度数的大小，我们可以将这些节点划分成几个区间。例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;区间1：度数小于等于 10&lt;/li&gt;
+&lt;li&gt;区间2：度数大于 10 且小于等于 50&lt;/li&gt;
+&lt;li&gt;区间3：度数大于 50&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设**$ε₁ = 0.1$&lt;strong&gt;，&lt;/strong&gt;$ε₂ = 1$&lt;strong&gt;，并且使用&lt;/strong&gt;指数分布**来决定隐私预算的具体值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于区间1，为其分配较高的隐私预算（如接近**$ε₂ = 1$**）。&lt;/li&gt;
+&lt;li&gt;对于区间，隐私预算会适中。&lt;/li&gt;
+&lt;li&gt;对于区间3，隐私预算会较低（接近**$ε₁ = 0.1$**）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;隐私预算的分配在度数区间的划分上使用了&lt;strong&gt;指数分布&lt;/strong&gt;。其公式为：
+&lt;/p&gt;
+$$
+\text{Sample from exponential distribution } f(y, \lambda) = \lambda e^{-\lambda y}, \, (y \geq 0)
+$$&lt;p&gt;
+之后用户用各自的 $ε_s$ 加噪：$\hat X_s=f(X_s)+\mathrm{Lap}(\Delta f/ε_s)$，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;APPGNN&lt;/strong&gt;按照&lt;strong&gt;节点度数&lt;/strong&gt;划分为若干个区间，并将 &lt;strong&gt;隐私预算区间&lt;/strong&gt; 对应划分，根据节点度数的 &lt;strong&gt;比例分布&lt;/strong&gt;，将其 &lt;strong&gt;映射到指数分布的分位数区间&lt;/strong&gt;，从中 &lt;strong&gt;采样出个性化的隐私预算&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-拓扑重要性个性化总隐私预算以区间&#34;&gt;2. 拓扑重要性个性化，总隐私预算以区间
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Lei D, Song Z, Yuan Y, et al. Achieving Personalized Privacy-Preserving Graph Neural Network via Topology Awareness[C]//Proceedings of the ACM on Web Conference 2025. 2025: 3552-3560.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;提出“邻接信息熵”（Adjacency Information Entropy, AIE）来衡量节点拓扑重要性，既考虑直连邻居也考虑间接关系：先算邻接度 $AD_u=\sum_{v\in \mathcal N_u} D_v$，再定义概率 $p_u=D_u/AD_v$，最后得信息熵式的 $AIE_u=-\sum_{v\in \mathcal N_u}(p_u\log_2 p_u),p_v$（式(4)–(6)）。重要性越高→隐私敏感度越高。&lt;/p&gt;
+&lt;p&gt;将总预算区间 $[,\epsilon_b,\epsilon_e,]$ 按节点隐私敏感度分成 $M$ 个等级与对应&lt;strong&gt;子区间&lt;/strong&gt;，并假设预算在该区间内&lt;strong&gt;服从指数分布&lt;/strong&gt;（真实网络度分布常呈幂律，少数节点很重要）。通过指数分布分位点把 $[,\epsilon_b,\epsilon_e,]$ 切成 $(\epsilon_b,\epsilon_1],(\epsilon_1,\epsilon_2],\dots,(\epsilon_{M-2},\epsilon_e]$，切分边界用式(7)(8)的分位数关系确定；重要节点→分到&lt;strong&gt;更小的 $\epsilon$&lt;/strong&gt;（更强保护/更大噪声），不太重要的节点→更大的 $\epsilon$（更少噪声）。每个节点最终&lt;strong&gt;从其子区间随机采样&lt;/strong&gt;得到个性化预算 $\epsilon_i$。&lt;/p&gt;
+&lt;p&gt;各节点用自己的 $\epsilon_i$ 做拉普拉斯机制：$\hat X_i=f(X_i)+\mathrm{Lap}(\Delta f/\epsilon_i)$（式(3)、(9)），并用&lt;strong&gt;随机响应&lt;/strong&gt;扰动标签（式(12)），实现特征+标签双重保护。&lt;/p&gt;
+&lt;p&gt;因不同邻居被加的噪声强度不同，直接平均会放大高噪声邻居的负面影响。论文据“&lt;strong&gt;越重要→预算越小→噪声越大&lt;/strong&gt;”的链条，给重要邻居更小权重：
+&lt;/p&gt;
+$$
+W_{u,v}=1+\frac{1}{D_u}-\frac{AIE_v}{\sum_{i\in Ner_u}AIE_{u,i}+AIE_u},
+$$&lt;p&gt;
+再做加权聚合（式(10)(11)）。这样能&lt;strong&gt;抑制差异化DP噪声&lt;/strong&gt;对表示学习的影响。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TDP-GNN 通过拓扑结构识别节点重要性，划分为多个隐私敏感度等级，映射到指数分布的预算区间并采样个性化预算，再结合加权聚合抑制噪声。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;3-上下文多臂赌博机cmab算法分配区间&#34;&gt;3. 上下文多臂赌博机（CMAB）算法分配（区间）
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Zhang X, Zhou Y, Hu M, et al. BGTplanner: Maximizing Training Accuracy for Differentially Private Federated Recommenders via Strategic Privacy Budget Allocation[J]. IEEE Transactions on Services Computing, 2025.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;步骤 1：生成奖励的预测&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对于每个动作 $a_t$ 和上下文 $X_t$，BGTplanner使用高斯过程回归模型预测奖励 $r_t$：
+$$
+    \mu(z_t) = \text{GPR}(a_t, X_t)
+    $$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;步骤 2：计算动作的评分&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据预测的奖励 $\mu(z_t)$，为每个可能的动作（隐私预算分配方案）计算一个&lt;strong&gt;评分&lt;/strong&gt; $\beta_t(a)$，公式如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+$$
+\beta_t(a) = \mu(z_t) - \langle \epsilon_{\text{total}} - \epsilon_t, \lambda_t \rangle
+$$&lt;p&gt;​	其中，$\lambda_t$ 是用于&lt;strong&gt;长期隐私预算约束&lt;/strong&gt;的拉格朗日乘子，确保在整个训练过程中不会超出总预算。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;步骤 3：选择最优的隐私预算分配方案
+&lt;ul&gt;
+&lt;li&gt;$\gamma$ 是&lt;strong&gt;探索和利用的权衡参数&lt;/strong&gt;，控制着系统是否偏向于选择当前最优的动作（利用）或探索其他可能的动作。&lt;/li&gt;
+&lt;li&gt;$A$ 是&lt;strong&gt;动作空间&lt;/strong&gt;的大小，表示可能的隐私预算分配方案的数量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;步骤 4：更新隐私预算消耗
+&lt;ul&gt;
+&lt;li&gt;在每轮训练之后，BGTplanner通过&lt;strong&gt;隐私预算消耗函数&lt;/strong&gt;来计算实际消耗的隐私预算 $\epsilon_t$，并更新剩余预算。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假设我们有如下参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;总隐私预算&lt;/strong&gt; $\epsilon_{\text{total}} = 10$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;隐私预算区间&lt;/strong&gt;：$\epsilon_{\text{min}} = 1, \epsilon_{\text{max}} = 5$&lt;/li&gt;
+&lt;li&gt;每轮的隐私预算分配动作是从区间 $[1, 5]$ 中选择的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在某个训练回合中，BGTplanner预测奖励为：
+&lt;/p&gt;
+$$
+&gt; \mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
+&gt; $$&lt;p&gt;
+接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;4-探讨隐私预算的推荐值&#34;&gt;4. 探讨隐私预算的推荐值
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Du W, Ma X, Dong W, et al. Calibrating privacy budgets for locally private graph neural networks[C]//2021 International Conference on Networking and Network Applications (NaNA). IEEE, 2021: 23-29.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;采用了 &lt;strong&gt;Multi-bit LDP Mechanism&lt;/strong&gt; (LPGNN的方法)对用户特征进行扰动:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户特征向量$ x∈[α,β]^d$&lt;/li&gt;
+&lt;li&gt;隐私预算$\epsilon$&lt;/li&gt;
+&lt;li&gt;控制参数 &lt;em&gt;m&lt;/em&gt;（每次扰动的特征维度数）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;输出：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;扰动后的特征向量 $ x∈{-1,0,1}^d$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过&lt;strong&gt;链路预测准确率&lt;/strong&gt;和加入属性推断攻击后的&lt;strong&gt;F1-score值&lt;/strong&gt;推荐隐私预算值&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;项目&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;内容&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;目标&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;在 LDP 保护的 GNN 中合理选择隐私预算 ε&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;方法&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;利用属性推断攻击效果作为隐私度量，结合链路预测准确率评估效用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;隐私机制&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Multi-bit LDP 机制，用户本地扰动特征，服务器无偏重构&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;推荐 ε 值&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;0.5 ~ 1（视具体业务对隐私和效用的需求）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;5-基于遗传算法ga的隐私预算分配&#34;&gt;5. 基于遗传算法（GA）的隐私预算分配
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Li Y, Song X, Tu Y, et al. GAPBAS: Genetic algorithm-based privacy budget allocation strategy in differential privacy K-means clustering algorithm[J]. Computers &amp;amp; Security, 2024, 139: 103697.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;通过分析噪声对质心的影响，推导出 &lt;strong&gt;最小隐私预算$ε_m$&lt;/strong&gt;：
+&lt;/p&gt;
+$$
+ε_m=(\frac{200k^3d+(1+d)^2}{N^2}(1+ρ^2))^{1/2}
+$$&lt;p&gt;
+其中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;k&lt;/em&gt;：聚类数；&lt;em&gt;d&lt;/em&gt;：数据维度；&lt;em&gt;N&lt;/em&gt;：样本数量；&lt;em&gt;ρ&lt;/em&gt;：噪声相关系数（通常取 0.225）；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每轮预算必须满足：&lt;em&gt;$ε_t$&lt;/em&gt;≥&lt;em&gt;$ε_m$&lt;/em&gt;，否则噪声过大导致质心不收敛。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;每个个体是一个长度为 $T$ 的浮点数组：${ε_1,ε_2,&amp;hellip;,ε_T}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;GAPBAS 将每轮隐私预算组合成序列，作为遗传算法的个体，在满足总预算和最小预算约束下，优化出使聚类效果（NICV）最优的预算分配策略。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;6-基于隐私安全等级privacy-security-level-psl&#34;&gt;6. 基于隐私安全等级（Privacy Security Level, PSL）
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Shen Z, He S, Wang H, et al. A differential privacy budget allocation method combining privacy security level[J]. Journal of Communications and Information Networks, 2023, 8(1): 90-98.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;提出 &lt;strong&gt;PSL 方法&lt;/strong&gt;：为每个位置分配一个“隐私安全等级”，并据此动态分配隐私预算 $ε$，实现 &lt;strong&gt;个性化、拓扑感知的隐私保护&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;P-series（p-级数）&lt;/strong&gt; 为初始敏感位置分配隐私预算&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;P-series&lt;/strong&gt; 为初始敏感位置分配预算：
+&lt;/p&gt;
+$$
+     \varepsilon_{m} = \frac{\varepsilon}{\zeta(p)} \times \frac{1}{m^{p}}, \quad m \in \mathbb{N}^{+}, \quad p &gt; 1
+     $$&lt;ul&gt;
+&lt;li&gt;$\varepsilon$：总隐私预算；&lt;/li&gt;
+&lt;li&gt;$\zeta(p)$：P级数收敛值（如 p=2 时，$\zeta(2)= π²/6$；&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;m&lt;/em&gt;：敏感位置编号（按重要性排序）；&lt;/li&gt;
+&lt;li&gt;结果：重要位置（m 小）获得更大预算（更小噪声）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;根据 &lt;strong&gt;距离与节点度&lt;/strong&gt; 为敏感点的邻居分配预算，并支持 &lt;strong&gt;动态时间调整&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;PSL定义：
+&lt;/p&gt;
+$$
+     \mathrm{PSL}(k_{m}) = \lambda \times \varepsilon_{m} = \lambda \times \frac{\varepsilon}{\zeta(p)} \times m^{p}
+     $$&lt;ul&gt;
+&lt;li&gt;PSL 与预算$\varepsilon$ 成反比；&lt;/li&gt;
+&lt;li&gt;$\lambda$ 为调节参数;&lt;/li&gt;
+&lt;li&gt;用于衡量位置的“隐私敏感度”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将 PSL 映射为隐私预算$ε$，满足 $\epsilon × PSL = \gamma$（$\gamma$ 为常数）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假设：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;敏感节点 $k_1$ 的 PSL = 0.6079；&lt;/li&gt;
+&lt;li&gt;邻居 A 距离为 1，邻居 B 距离为 2；&lt;/li&gt;
+&lt;li&gt;NPS = {A, B}；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;则：
+&lt;/p&gt;
+$$
+&gt; \mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
+&gt; \\
+&gt; \mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
+&gt; $$&lt;p&gt;
+再映射回预算：
+&lt;/p&gt;
+$$
+&gt; \epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
+&gt; , \\
+&gt; \epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
+&gt; $$&lt;p&gt;
+&lt;strong&gt;PSL 方法通过 P-series 为敏感位置分配递减预算，再结合距离与节点度为邻居分配个性化预算，并支持时间动态调整，实现“重要位置多留数据，敏感位置多加噪声”的精细化隐私保护。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
