@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bobQAQ003/Kuka/</loc>
-    <lastmod>2025-10-23T15:10:49+08:00</lastmod>
+    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -14,12 +14,6 @@
                 hreflang="zh-cn"
                 href="https://bobQAQ003/Kuka/"
                 />
-  </url><url>
-    <loc>https://bobQAQ003/Kuka/p/first/</loc>
-    <lastmod>2025-10-23T15:10:49+08:00</lastmod>
-  </url><url>
-    <loc>https://bobQAQ003/Kuka/post/</loc>
-    <lastmod>2025-10-23T15:10:49+08:00</lastmod>
   </url><url>
     <loc>https://bobQAQ003/Kuka/categories/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
@@ -35,6 +29,9 @@
                 />
   </url><url>
     <loc>https://bobQAQ003/Kuka/p/test-chinese/</loc>
+    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://bobQAQ003/Kuka/post/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://bobQAQ003/Kuka/categories/test/</loc>
