@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on Kuka</title>
+        <title>Categories on KukaDam</title>
         <link>https://bobQAQ003/Kuka-hugo/categories/</link>
-        <description>Recent content in Categories on Kuka</description>
+        <description>Recent content in Categories on KukaDam</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDams</copyright>
-        <lastBuildDate>Fri, 24 Oct 2025 19:19:24 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 24 Oct 2025 20:57:46 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Hugo</title>
         <link>https://bobQAQ003/Kuka-hugo/categories/hugo/</link>
         <pubDate>Fri, 24 Oct 2025 19:19:24 +0800</pubDate>
