@@ -80,7 +80,7 @@ $$&lt;h3 id=&#34;前向传播变化&#34;&gt;前向传播变化
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
-    &lt;p&gt;但是准确率变得极低NOTE&lt;/p&gt;&lt;/blockquote&gt;
+    &lt;p&gt;但是准确率变得极低&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;原因可能：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;按照目前的翻转概率（84%）进行扰动，训练中剩下的正确的节点就比较少，模型学到的错误标签较多&lt;/li&gt;
