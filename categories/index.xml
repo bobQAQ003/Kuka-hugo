@@ -2,65 +2,65 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Kuka</title>
-        <link>https://bobQAQ003/Kuka/categories/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/</link>
         <description>Recent content in Categories on Kuka</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDams</copyright>
-        <lastBuildDate>Thu, 23 Oct 2025 19:00:59 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Oct 2025 19:00:59 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Fairness and Privacy</title>
-        <link>https://bobQAQ003/Kuka/categories/fairness-and-privacy/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/fairness-and-privacy/</link>
         <pubDate>Thu, 23 Oct 2025 19:00:59 +0800</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/fairness-and-privacy/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/fairness-and-privacy/</guid>
         <description></description>
         </item>
         <item>
         <title>GNNs</title>
-        <link>https://bobQAQ003/Kuka/categories/gnns/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/gnns/</link>
         <pubDate>Thu, 23 Oct 2025 19:00:59 +0800</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/gnns/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/gnns/</guid>
         <description></description>
         </item>
         <item>
         <title>Test</title>
-        <link>https://bobQAQ003/Kuka/categories/test/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/test/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/test/</guid>
-        <description>&lt;img src="https://bobQAQ003/Kuka/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/test/</guid>
+        <description>&lt;img src="https://bobQAQ003/Kuka-hugo/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
         </item>
         <item>
         <title>测试</title>
-        <link>https://bobQAQ003/Kuka/categories/%E6%B5%8B%E8%AF%95/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/%E6%B5%8B%E8%AF%95/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/%E6%B5%8B%E8%AF%95/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/%E6%B5%8B%E8%AF%95/</guid>
         <description></description>
         </item>
         <item>
         <title>Syntax</title>
-        <link>https://bobQAQ003/Kuka/categories/syntax/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/syntax/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/syntax/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/syntax/</guid>
         <description></description>
         </item>
         <item>
         <title>Themes</title>
-        <link>https://bobQAQ003/Kuka/categories/themes/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/themes/</link>
         <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/themes/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/themes/</guid>
         <description></description>
         </item>
         <item>
         <title>Test With Whitespaces</title>
-        <link>https://bobQAQ003/Kuka/categories/test-with-whitespaces/</link>
+        <link>https://bobQAQ003/Kuka-hugo/categories/test-with-whitespaces/</link>
         <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka/categories/test-with-whitespaces/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/categories/test-with-whitespaces/</guid>
         <description></description>
         </item>
         

@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://bobQAQ003/Kuka/en/categories/</loc>
+    <loc>https://bobQAQ003/Kuka-hugo/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka/categories/"
+                href="https://bobQAQ003/Kuka-hugo/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka/en/categories/"
+                href="https://bobQAQ003/Kuka-hugo/en/categories/"
                 />
   </url><url>
-    <loc>https://bobQAQ003/Kuka/en/</loc>
+    <loc>https://bobQAQ003/Kuka-hugo/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka/"
+                href="https://bobQAQ003/Kuka-hugo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka/en/"
+                href="https://bobQAQ003/Kuka-hugo/en/"
                 />
   </url><url>
-    <loc>https://bobQAQ003/Kuka/en/tags/</loc>
+    <loc>https://bobQAQ003/Kuka-hugo/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka/tags/"
+                href="https://bobQAQ003/Kuka-hugo/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka/en/tags/"
+                href="https://bobQAQ003/Kuka-hugo/en/tags/"
                 />
   </url>
 </urlset>
