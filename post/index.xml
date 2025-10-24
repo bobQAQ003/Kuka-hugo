@@ -34,10 +34,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;copy按钮复制带行号&#34;&gt;copy按钮复制带行号
-&lt;/h4&gt;&lt;p&gt;修改&lt;code&gt;/themes/hugo-theme-stack/assets/ts/main.ts&lt;/code&gt;文件中的复制按钮逻辑&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;修改&lt;code&gt;/themes/hugo-theme-stack/assets/ts/main.ts&lt;/code&gt;文件中的复制按钮逻辑。&lt;/p&gt;
+&lt;p&gt;但具体情况是，在本地进行调试时，确实手动复制和&lt;code&gt;copy&lt;/code&gt;复制都会涉及行号。当部署到&lt;code&gt;github pages&lt;/code&gt;打开后，&lt;code&gt;copy&lt;/code&gt;不会有影响，反而手动复制可能会复制到行号。&lt;/p&gt;
+&lt;p&gt;所以具体情况看个人博客部署情况吧。&lt;del&gt;反正能用&lt;/del&gt;&lt;/p&gt;
 &lt;h2 id=&#34;markdown样式&#34;&gt;Markdown样式
 &lt;/h2&gt;&lt;h3 id=&#34;键盘样式&#34;&gt;键盘样式
-&lt;/h3&gt;&lt;p&gt;来自 [Hugo Stack 魔改美化 | Naive Koala](&lt;a class=&#34;link&#34; href=&#34;https://www.xalaok.top/post/stack-modify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h3&gt;&lt;p&gt;参考 [Hugo Stack 魔改美化 | Naive Koala](&lt;a class=&#34;link&#34; href=&#34;https://www.xalaok.top/post/stack-modify/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo Stack 魔改美化 | Naive Koala&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;在 &lt;code&gt;/assets/scss/custom.scss&lt;/code&gt; 中加入以下代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -79,8 +81,9 @@
 &lt;p&gt;&lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
 &lt;h2 id=&#34;组件&#34;&gt;组件
 &lt;/h2&gt;&lt;h3 id=&#34;顶部返回按钮&#34;&gt;顶部返回按钮
-&lt;/h3&gt;&lt;p&gt;来自&lt;a class=&#34;link&#34; href=&#34;https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+&lt;/h3&gt;&lt;p&gt;参考&lt;a class=&#34;link&#34; href=&#34;https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Stack 主题的自定义 | L1nSn0w’s Log&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;个人不是很喜欢返回键把左边菜单隐藏，给自己留个档。&lt;/p&gt;
 </description>
         </item>
         <item>

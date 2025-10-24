@@ -380,10 +380,12 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="copy按钮复制带行号">copy按钮复制带行号
-</h4><p>修改<code>/themes/hugo-theme-stack/assets/ts/main.ts</code>文件中的复制按钮逻辑</p>
+</h4><p>修改<code>/themes/hugo-theme-stack/assets/ts/main.ts</code>文件中的复制按钮逻辑。</p>
+<p>但具体情况是，在本地进行调试时，确实手动复制和<code>copy</code>复制都会涉及行号。当部署到<code>github pages</code>打开后，<code>copy</code>不会有影响，反而手动复制可能会复制到行号。</p>
+<p>所以具体情况看个人博客部署情况吧。<del>反正能用</del></p>
 <h2 id="markdown样式">Markdown样式
 </h2><h3 id="键盘样式">键盘样式
-</h3><p>来自 [Hugo Stack 魔改美化 | Naive Koala](<a class="link" href="https://www.xalaok.top/post/stack-modify/"  target="_blank" rel="noopener"
+</h3><p>参考 [Hugo Stack 魔改美化 | Naive Koala](<a class="link" href="https://www.xalaok.top/post/stack-modify/"  target="_blank" rel="noopener"
     >Hugo Stack 魔改美化 | Naive Koala</a>)</p>
 <p>在 <code>/assets/scss/custom.scss</code> 中加入以下代码：</p>
 <div class="highlight"><div class="chroma">
@@ -425,8 +427,9 @@
 <p><kbd>CTRL</kbd> + <kbd>C</kbd></p>
 <h2 id="组件">组件
 </h2><h3 id="顶部返回按钮">顶部返回按钮
-</h3><p>来自<a class="link" href="https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/"  target="_blank" rel="noopener"
+</h3><p>参考<a class="link" href="https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/"  target="_blank" rel="noopener"
     >Stack 主题的自定义 | L1nSn0w’s Log</a></p>
+<p>个人不是很喜欢返回键把左边菜单隐藏，给自己留个档。</p>
 
 </section>
 
@@ -598,6 +601,111 @@
     }());
 </script>
 
+
+
+<a href="#" id="back-to-top" title="返回顶部"></a>
+
+
+<style>
+  #back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 55px;
+    width: 55px;
+    height: 55px;
+    border-radius: 7px;
+    background-color: rgba(64, 158, 255, 0.5);
+    box-shadow: var(--shadow-l2);
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+  }
+
+  #back-to-top:before {
+    content: ' ';
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transform: rotate(135deg);
+    height: 10px;
+    width: 10px;
+    border-width: 0 0 2px 2px;
+    border-color: var(--back-to-top-color);
+    border-style: solid;
+  }
+
+  #back-to-top:hover:before {
+    border-color: #2674e0;
+  }
+
+   
+  @media screen and (max-width: 768px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 10px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1024px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 40px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1280px) {
+    #back-to-top {
+      bottom: 20px;
+      right: 55px;
+    }
+  }
+
+   
+  @media screen and (min-width: 1536px) {
+    #back-to-top {
+      visibility: hidden;
+    }
+  }
+</style>
+
+
+<script>
+  function backToTop() {
+    document.documentElement.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
+
+  window.onload = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop > 0) {
+      totopBtn.style.display = 'inline'
+    } else {
+      totopBtn.style.display = 'none'
+    }
+  }
+
+  window.onscroll = function () {
+    let scrollTop =
+      this.document.documentElement.scrollTop || this.document.body.scrollTop
+    let totopBtn = this.document.getElementById('back-to-top')
+    if (scrollTop < 200) {
+      totopBtn.style.display = 'none'
+    } else {
+      totopBtn.style.display = 'inline'
+      totopBtn.addEventListener('click', backToTop, false)
+    }
+  }
+</script>
 
 
 
