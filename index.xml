@@ -7,14 +7,100 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDams</copyright>
-        <lastBuildDate>Thu, 23 Oct 2025 19:00:59 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 24 Oct 2025 15:58:38 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>【Privacy】LPGNN</title>
+        <link>https://bobQAQ003/Kuka-hugo/p/privacylpgnn/</link>
+        <pubDate>Fri, 24 Oct 2025 15:58:38 +0800</pubDate>
+        
+        <guid>https://bobQAQ003/Kuka-hugo/p/privacylpgnn/</guid>
+        <description>&lt;h2 id=&#34;对标签-y-用基于质心的扰动&#34;&gt;对标签 y 用基于质心的扰动
+&lt;/h2&gt;&lt;h3 id=&#34;转移矩阵变化&#34;&gt;转移矩阵变化
+&lt;/h3&gt;&lt;p&gt;按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;，都是节点向量，每个节点都是不同的概率：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;比如扰动2000个节点，那么:&lt;/p&gt;
+&lt;p&gt;p=torch.Size([0.7,0.7,0.8&amp;hellip;.], 2000)，&lt;/p&gt;
+&lt;p&gt;q=torch.Size([0.1,0.1,0.2&amp;hellip;], 2000)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但是原来采用RR的扰动，对标签的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;是标量，&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不论多少节点，p=0.7, q=0.1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这是不同的地方，目前为止没什么大问题，问题是在标签部分需要计算一个&lt;strong&gt;转移矩阵&lt;/strong&gt;&lt;code&gt;data.T&lt;/code&gt;，大小是 &lt;code&gt;[num_classes, num_classes]&lt;/code&gt;，&lt;code&gt;T[i,j]&lt;/code&gt; 表示真实类别 &lt;code&gt;i&lt;/code&gt; 被扰动成类别 &lt;code&gt;j&lt;/code&gt; 的概率，假如是个3分类，T就是这样：
+&lt;/p&gt;
+$$
+T=\left[\begin{array}{ccc}
+0.7 &amp; 0.1 &amp; 0.1 \\
+0.1 &amp; 0.7 &amp; 0.1 \\
+0.1 &amp; 0.1 &amp; 0.7
+\end{array}\right]
+$$&lt;blockquote&gt;
+&lt;p&gt;标签 0 有 70% 的概率保持为标签 0，10% 的概率变为标签 1，10% 的概率变为标签 2&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果计算每个节点标签的扰动概率不同，那么转移矩阵&lt;code&gt;data.T&lt;/code&gt;就要变成三维的了：&lt;code&gt;[num_nodes,num_classes, num_classes]&lt;/code&gt;，节点&lt;code&gt;n&lt;/code&gt;的标签 &lt;code&gt;i&lt;/code&gt;被扰动成类别 &lt;code&gt;j&lt;/code&gt; 的概率：
+&lt;/p&gt;
+$$
+T=\left[\left[\begin{array}{ccc}
+0.7 &amp; 0.1 &amp; 0.1 \\
+0.1 &amp; 0.7 &amp; 0.1 \\
+0.1 &amp; 0.1 &amp; 0.7
+\end{array}\right],\left[\begin{array}{ccc}
+0.8 &amp; 0.1 &amp; 0.1 \\
+0.1 &amp; 0.8 &amp; 0.1 \\
+0.1 &amp; 0.1 &amp; 0.8
+\end{array}\right]...\right]
+$$&lt;h3 id=&#34;前向传播变化&#34;&gt;前向传播变化
+&lt;/h3&gt;&lt;p&gt;得到上面三维的转移矩阵&lt;code&gt;data.T&lt;/code&gt;，还要继续修改&lt;code&gt;forward&lt;/code&gt;部分：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# p_yp_x = torch.matmul(p_y_x, data.T) if self.forward_correction else p_y_x  # P(y&amp;#39;|x&amp;#39;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;p_yp_x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;torch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bmm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p_y_x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unsqueeze&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;squeeze&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;forward_correction&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p_y_x&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# P(y&amp;#39;|x&amp;#39;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;还有&lt;code&gt;metrics&lt;/code&gt;部分：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metrics&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;train/loss&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;loss&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;train/acc&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;accuracy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pred&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p_y_x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;train_mask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;train_mask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# &amp;#39;train/maxacc&amp;#39;: data.T[0, 0].item() * 100,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;train/maxacc&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;diagonal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dim1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dim2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;item&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;但是准确率变得极低NOTE&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;原因可能：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;按照目前的翻转概率（84%）进行扰动，训练中剩下的正确的节点就比较少，模型学到的错误标签较多&lt;/li&gt;
+&lt;li&gt;高噪声下，&lt;strong&gt;KProp&lt;/strong&gt;层的传播起负面效果，污染了干净节点，没有专门的抗噪声设计&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;解决：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; KProp加上去偏层&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Kprop加上噪声过滤的方法&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>【Privacy】自适应隐私预算分配</title>
         <link>https://bobQAQ003/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/</link>
         <pubDate>Thu, 23 Oct 2025 19:00:59 +0800</pubDate>
         
         <guid>https://bobQAQ003/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/</guid>
-        <description>&lt;h3 id=&#34;1-按度数分布划分区间总隐私预算以区间&#34;&gt;1. 按度数分布划分区间，总隐私预算以区间
-&lt;/h3&gt;&lt;blockquote&gt;
+        <description>&lt;h2 id=&#34;按度数分布划分区间总隐私预算以区间&#34;&gt;按度数分布划分区间，总隐私预算以区间
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.&lt;/p&gt;
 &lt;p&gt;Yuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -40,8 +126,8 @@ $$&lt;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;APPGNN&lt;/strong&gt;按照&lt;strong&gt;节点度数&lt;/strong&gt;划分为若干个区间，并将 &lt;strong&gt;隐私预算区间&lt;/strong&gt; 对应划分，根据节点度数的 &lt;strong&gt;比例分布&lt;/strong&gt;，将其 &lt;strong&gt;映射到指数分布的分位数区间&lt;/strong&gt;，从中 &lt;strong&gt;采样出个性化的隐私预算&lt;/strong&gt;。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;2-拓扑重要性个性化总隐私预算以区间&#34;&gt;2. 拓扑重要性个性化，总隐私预算以区间
-&lt;/h3&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;拓扑重要性个性化总隐私预算以区间&#34;&gt;拓扑重要性个性化，总隐私预算以区间
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Lei D, Song Z, Yuan Y, et al. Achieving Personalized Privacy-Preserving Graph Neural Network via Topology Awareness[C]//Proceedings of the ACM on Web Conference 2025. 2025: 3552-3560.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;提出“邻接信息熵”（Adjacency Information Entropy, AIE）来衡量节点拓扑重要性，既考虑直连邻居也考虑间接关系：先算邻接度 $AD_u=\sum_{v\in \mathcal N_u} D_v$，再定义概率 $p_u=D_u/AD_v$，最后得信息熵式的 $AIE_u=-\sum_{v\in \mathcal N_u}(p_u\log_2 p_u),p_v$（式(4)–(6)）。重要性越高→隐私敏感度越高。&lt;/p&gt;
@@ -56,8 +142,8 @@ $$&lt;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;TDP-GNN 通过拓扑结构识别节点重要性，划分为多个隐私敏感度等级，映射到指数分布的预算区间并采样个性化预算，再结合加权聚合抑制噪声。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;3-上下文多臂赌博机cmab算法分配区间&#34;&gt;3. 上下文多臂赌博机（CMAB）算法分配（区间）
-&lt;/h3&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;上下文多臂赌博机cmab算法分配区间&#34;&gt;上下文多臂赌博机（CMAB）算法分配（区间）
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Zhang X, Zhou Y, Hu M, et al. BGTplanner: Maximizing Training Accuracy for Differentially Private Federated Recommenders via Strategic Privacy Budget Allocation[J]. IEEE Transactions on Services Computing, 2025.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
@@ -108,8 +194,8 @@ $$
 接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;4-探讨隐私预算的推荐值&#34;&gt;4. 探讨隐私预算的推荐值
-&lt;/h3&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;探讨隐私预算的推荐值&#34;&gt;探讨隐私预算的推荐值
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Du W, Ma X, Dong W, et al. Calibrating privacy budgets for locally private graph neural networks[C]//2021 International Conference on Networking and Network Applications (NaNA). IEEE, 2021: 23-29.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;采用了 &lt;strong&gt;Multi-bit LDP Mechanism&lt;/strong&gt; (LPGNN的方法)对用户特征进行扰动:&lt;/p&gt;
@@ -150,8 +236,8 @@ $$
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;5-基于遗传算法ga的隐私预算分配&#34;&gt;5. 基于遗传算法（GA）的隐私预算分配
-&lt;/h3&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;基于遗传算法ga的隐私预算分配&#34;&gt;基于遗传算法（GA）的隐私预算分配
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Li Y, Song X, Tu Y, et al. GAPBAS: Genetic algorithm-based privacy budget allocation strategy in differential privacy K-means clustering algorithm[J]. Computers &amp;amp; Security, 2024, 139: 103697.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;通过分析噪声对质心的影响，推导出 &lt;strong&gt;最小隐私预算$ε_m$&lt;/strong&gt;：
@@ -172,8 +258,8 @@ $$&lt;p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;GAPBAS 将每轮隐私预算组合成序列，作为遗传算法的个体，在满足总预算和最小预算约束下，优化出使聚类效果（NICV）最优的预算分配策略。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;6-基于隐私安全等级privacy-security-level-psl&#34;&gt;6. 基于隐私安全等级（Privacy Security Level, PSL）
-&lt;/h3&gt;&lt;blockquote&gt;
+&lt;h2 id=&#34;基于隐私安全等级privacy-security-level-psl&#34;&gt;基于隐私安全等级（Privacy Security Level, PSL）
+&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Shen Z, He S, Wang H, et al. A differential privacy budget allocation method combining privacy security level[J]. Journal of Communications and Information Networks, 2023, 8(1): 90-98.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;提出 &lt;strong&gt;PSL 方法&lt;/strong&gt;：为每个位置分配一个“隐私安全等级”，并据此动态分配隐私预算 $ε$，实现 &lt;strong&gt;个性化、拓扑感知的隐私保护&lt;/strong&gt;。&lt;/p&gt;

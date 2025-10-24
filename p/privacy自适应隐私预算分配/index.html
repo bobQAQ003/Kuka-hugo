@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
 <title>【Privacy】自适应隐私预算分配</title>
 
 <link rel='canonical' href='https://bobQAQ003/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.04fdb8fb8109e6a46c50e67e960a5078f0c03d867a990513db29e436c9c5c35e.css"><meta property='og:title' content="【Privacy】自适应隐私预算分配">
-<meta property='og:description' content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.df2cc4db2ebebf1347cc352bf333934661871125e9f850cb9c7f0a0bbd11e747.css"><meta property='og:title' content="【Privacy】自适应隐私预算分配">
+<meta property='og:description' content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
 <meta property='og:url' content='https://bobQAQ003/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
 <meta property='og:site_name' content='Kuka'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-23T19:00:59&#43;08:00'/><meta property='article:modified_time' content='2025-10-23T19:00:59&#43;08:00'/>
 <meta name="twitter:title" content="【Privacy】自适应隐私预算分配">
-<meta name="twitter:description" content="1. 按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n">
+<meta name="twitter:description" content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
 
     </head>
@@ -290,16 +290,12 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
-      <ol>
-        <li><a href="#1-按度数分布划分区间总隐私预算以区间">1. 按度数分布划分区间，总隐私预算以区间</a></li>
-        <li><a href="#2-拓扑重要性个性化总隐私预算以区间">2. 拓扑重要性个性化，总隐私预算以区间</a></li>
-        <li><a href="#3-上下文多臂赌博机cmab算法分配区间">3. 上下文多臂赌博机（CMAB）算法分配（区间）</a></li>
-        <li><a href="#4-探讨隐私预算的推荐值">4. 探讨隐私预算的推荐值</a></li>
-        <li><a href="#5-基于遗传算法ga的隐私预算分配">5. 基于遗传算法（GA）的隐私预算分配</a></li>
-        <li><a href="#6-基于隐私安全等级privacy-security-level-psl">6. 基于隐私安全等级（Privacy Security Level, PSL）</a></li>
-      </ol>
-    </li>
+    <li><a href="#按度数分布划分区间总隐私预算以区间">按度数分布划分区间，总隐私预算以区间</a></li>
+    <li><a href="#拓扑重要性个性化总隐私预算以区间">拓扑重要性个性化，总隐私预算以区间</a></li>
+    <li><a href="#上下文多臂赌博机cmab算法分配区间">上下文多臂赌博机（CMAB）算法分配（区间）</a></li>
+    <li><a href="#探讨隐私预算的推荐值">探讨隐私预算的推荐值</a></li>
+    <li><a href="#基于遗传算法ga的隐私预算分配">基于遗传算法（GA）的隐私预算分配</a></li>
+    <li><a href="#基于隐私安全等级privacy-security-level-psl">基于隐私安全等级（Privacy Security Level, PSL）</a></li>
   </ol>
 </nav>
         </div>
@@ -369,8 +365,8 @@
     <section class="article-content">
     
     
-    <h3 id="1-按度数分布划分区间总隐私预算以区间">1. 按度数分布划分区间，总隐私预算以区间
-</h3><blockquote>
+    <h2 id="按度数分布划分区间总隐私预算以区间">按度数分布划分区间，总隐私预算以区间
+</h2><blockquote>
 <p>Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.</p>
 <p>Yuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.</p>
 </blockquote>
@@ -396,8 +392,8 @@ $$<p>
 <blockquote>
 <p><strong>APPGNN</strong>按照<strong>节点度数</strong>划分为若干个区间，并将 <strong>隐私预算区间</strong> 对应划分，根据节点度数的 <strong>比例分布</strong>，将其 <strong>映射到指数分布的分位数区间</strong>，从中 <strong>采样出个性化的隐私预算</strong>。</p>
 </blockquote>
-<h3 id="2-拓扑重要性个性化总隐私预算以区间">2. 拓扑重要性个性化，总隐私预算以区间
-</h3><blockquote>
+<h2 id="拓扑重要性个性化总隐私预算以区间">拓扑重要性个性化，总隐私预算以区间
+</h2><blockquote>
 <p>Lei D, Song Z, Yuan Y, et al. Achieving Personalized Privacy-Preserving Graph Neural Network via Topology Awareness[C]//Proceedings of the ACM on Web Conference 2025. 2025: 3552-3560.</p>
 </blockquote>
 <p>提出“邻接信息熵”（Adjacency Information Entropy, AIE）来衡量节点拓扑重要性，既考虑直连邻居也考虑间接关系：先算邻接度 $AD_u=\sum_{v\in \mathcal N_u} D_v$，再定义概率 $p_u=D_u/AD_v$，最后得信息熵式的 $AIE_u=-\sum_{v\in \mathcal N_u}(p_u\log_2 p_u),p_v$（式(4)–(6)）。重要性越高→隐私敏感度越高。</p>
@@ -412,8 +408,8 @@ $$<p>
 <blockquote>
 <p><strong>TDP-GNN 通过拓扑结构识别节点重要性，划分为多个隐私敏感度等级，映射到指数分布的预算区间并采样个性化预算，再结合加权聚合抑制噪声。</strong></p>
 </blockquote>
-<h3 id="3-上下文多臂赌博机cmab算法分配区间">3. 上下文多臂赌博机（CMAB）算法分配（区间）
-</h3><blockquote>
+<h2 id="上下文多臂赌博机cmab算法分配区间">上下文多臂赌博机（CMAB）算法分配（区间）
+</h2><blockquote>
 <p>Zhang X, Zhou Y, Hu M, et al. BGTplanner: Maximizing Training Accuracy for Differentially Private Federated Recommenders via Strategic Privacy Budget Allocation[J]. IEEE Transactions on Services Computing, 2025.</p>
 </blockquote>
 <ul>
@@ -464,8 +460,8 @@ $$
 接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。</p>
 <p><strong>BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用</strong></p>
 </blockquote>
-<h3 id="4-探讨隐私预算的推荐值">4. 探讨隐私预算的推荐值
-</h3><blockquote>
+<h2 id="探讨隐私预算的推荐值">探讨隐私预算的推荐值
+</h2><blockquote>
 <p>Du W, Ma X, Dong W, et al. Calibrating privacy budgets for locally private graph neural networks[C]//2021 International Conference on Networking and Network Applications (NaNA). IEEE, 2021: 23-29.</p>
 </blockquote>
 <p>采用了 <strong>Multi-bit LDP Mechanism</strong> (LPGNN的方法)对用户特征进行扰动:</p>
@@ -506,8 +502,8 @@ $$
       </tr>
   </tbody>
 </table></div>
-<h3 id="5-基于遗传算法ga的隐私预算分配">5. 基于遗传算法（GA）的隐私预算分配
-</h3><blockquote>
+<h2 id="基于遗传算法ga的隐私预算分配">基于遗传算法（GA）的隐私预算分配
+</h2><blockquote>
 <p>Li Y, Song X, Tu Y, et al. GAPBAS: Genetic algorithm-based privacy budget allocation strategy in differential privacy K-means clustering algorithm[J]. Computers &amp; Security, 2024, 139: 103697.</p>
 </blockquote>
 <p>通过分析噪声对质心的影响，推导出 <strong>最小隐私预算$ε_m$</strong>：
@@ -528,8 +524,8 @@ $$<p>
 <blockquote>
 <p><strong>GAPBAS 将每轮隐私预算组合成序列，作为遗传算法的个体，在满足总预算和最小预算约束下，优化出使聚类效果（NICV）最优的预算分配策略。</strong></p>
 </blockquote>
-<h3 id="6-基于隐私安全等级privacy-security-level-psl">6. 基于隐私安全等级（Privacy Security Level, PSL）
-</h3><blockquote>
+<h2 id="基于隐私安全等级privacy-security-level-psl">基于隐私安全等级（Privacy Security Level, PSL）
+</h2><blockquote>
 <p>Shen Z, He S, Wang H, et al. A differential privacy budget allocation method combining privacy security level[J]. Journal of Communications and Information Networks, 2023, 8(1): 90-98.</p>
 </blockquote>
 <p>提出 <strong>PSL 方法</strong>：为每个位置分配一个“隐私安全等级”，并据此动态分配隐私预算 $ε$，实现 <strong>个性化、拓扑感知的隐私保护</strong>。</p>
@@ -649,6 +645,28 @@ $$
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/Kuka-hugo/p/privacylpgnn/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Privacy】LPGNN</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -775,7 +793,53 @@ $$
       --base-font-family: 'linjiawaso';
       --code-font-family: 'linjiawaso';
     }
-  </style>
+
+    #backTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        z-index: 99;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background-image: url(https://bobQAQ003/Kuka-hugo/icons/backTop.svg);
+    }
+</style>
+
+
+<script>
   
+
+  function initScrollTop() {
+      let rightSideBar = document.querySelector(".right-sidebar");
+      if (!rightSideBar) {
+          return;
+      }
+      
+      let btn = document.createElement("div");
+      btn.id = "backTopBtn";
+      btn.onclick = backToTop
+      rightSideBar.appendChild(btn)
+      
+      window.onscroll = function() {
+          
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              btn.style.display = "block";
+          } else {
+              btn.style.display = "none";
+          }
+      };
+  }
+
+  
+
+  function backToTop(){
+      window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  initScrollTop();
+</script>
+
+
     </body>
 </html>

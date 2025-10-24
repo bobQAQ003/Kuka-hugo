@@ -7,7 +7,7 @@
 
 <link rel='canonical' href='https://bobQAQ003/Kuka-hugo/en/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.04fdb8fb8109e6a46c50e67e960a5078f0c03d867a990513db29e436c9c5c35e.css"><meta property='og:title' content="Example Site">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.df2cc4db2ebebf1347cc352bf333934661871125e9f850cb9c7f0a0bbd11e747.css"><meta property='og:title' content="Example Site">
 <meta property='og:description' content="Example description">
 <meta property='og:url' content='https://bobQAQ003/Kuka-hugo/en/'>
 <meta property='og:site_name' content='Example Site'>
@@ -256,7 +256,53 @@
       --base-font-family: 'linjiawaso';
       --code-font-family: 'linjiawaso';
     }
-  </style>
+
+    #backTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        z-index: 99;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background-image: url(https://bobQAQ003/Kuka-hugo/icons/backTop.svg);
+    }
+</style>
+
+
+<script>
   
+
+  function initScrollTop() {
+      let rightSideBar = document.querySelector(".right-sidebar");
+      if (!rightSideBar) {
+          return;
+      }
+      
+      let btn = document.createElement("div");
+      btn.id = "backTopBtn";
+      btn.onclick = backToTop
+      rightSideBar.appendChild(btn)
+      
+      window.onscroll = function() {
+          
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              btn.style.display = "block";
+          } else {
+              btn.style.display = "none";
+          }
+      };
+  }
+
+  
+
+  function backToTop(){
+      window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  initScrollTop();
+</script>
+
+
     </body>
 </html>
