@@ -15,7 +15,7 @@
         <guid>https://bobQAQ003/Kuka-hugo/p/privacylpgnn/</guid>
         <description>&lt;h2 id=&#34;对标签-y-用基于质心的扰动&#34;&gt;对标签 y 用基于质心的扰动
 &lt;/h2&gt;&lt;h3 id=&#34;转移矩阵变化&#34;&gt;转移矩阵变化
-&lt;/h3&gt;&lt;p&gt;按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;，都是节点向量，每个节点都是不同的概率：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;，都是节点向量，每个节点都是不同的概率：&lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;比如扰动2000个节点，那么:&lt;/p&gt;
 &lt;p&gt;p=torch.Size([0.7,0.7,0.8&amp;hellip;.], 2000)，&lt;/p&gt;

@@ -15,7 +15,7 @@
         <guid>https://bobQAQ003/Kuka-hugo/p/privacylpgnn/</guid>
         <description>&lt;h2 id=&#34;对标签-y-用基于质心的扰动&#34;&gt;对标签 y 用基于质心的扰动
 &lt;/h2&gt;&lt;h3 id=&#34;转移矩阵变化&#34;&gt;转移矩阵变化
-&lt;/h3&gt;&lt;p&gt;按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;，都是节点向量，每个节点都是不同的概率：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率&lt;code&gt;p&lt;/code&gt;和扰动概率&lt;code&gt;q&lt;/code&gt;，都是节点向量，每个节点都是不同的概率：&lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;比如扰动2000个节点，那么:&lt;/p&gt;
 &lt;p&gt;p=torch.Size([0.7,0.7,0.8&amp;hellip;.], 2000)，&lt;/p&gt;
@@ -328,7 +328,7 @@ $$
 </description>
         </item>
         <item>
-        <title>归档 | Archives</title>
+        <title>归档</title>
         <link>https://bobQAQ003/Kuka-hugo/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
@@ -336,28 +336,28 @@ $$
         <description></description>
         </item>
         <item>
-        <title>关于 | About</title>
-        <link>https://bobQAQ003/Kuka-hugo/%E5%85%B3%E4%BA%8E-about/</link>
+        <title>关于</title>
+        <link>https://bobQAQ003/Kuka-hugo/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://bobQAQ003/Kuka-hugo/%E5%85%B3%E4%BA%8E-about/</guid>
+        <guid>https://bobQAQ003/Kuka-hugo/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>技术链接 | Links</title>
-        <link>https://bobQAQ003/Kuka-hugo/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://bobQAQ003/Kuka-hugo/%E6%8A%80%E6%9C%AF%E9%93%BE%E6%8E%A5-links/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>搜索 | Search</title>
+        <title>搜索</title>
         <link>https://bobQAQ003/Kuka-hugo/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://bobQAQ003/Kuka-hugo/search/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>友链</title>
+        <link>https://bobQAQ003/Kuka-hugo/%E5%8F%8B%E9%93%BE/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://bobQAQ003/Kuka-hugo/%E5%8F%8B%E9%93%BE/</guid>
         <description></description>
         </item>
         
