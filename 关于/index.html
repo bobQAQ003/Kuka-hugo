@@ -646,7 +646,6 @@
     document.addEventListener('pjax:complete', () => {
         
         window.Stack.init();
-        renderKaTeX();
         topbar.hide();
     })
 
@@ -682,9 +681,9 @@
         })
     }
 
-    
-    
-    
+    document.addEventListener('pjax:complete', () => {
+        renderKaTeX();
+    })
 </script>
     </body>
 </html>

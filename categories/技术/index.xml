@@ -7,15 +7,14 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDams</copyright>
-        <lastBuildDate>Sat, 25 Oct 2025 15:51:18 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 25 Oct 2025 16:16:53 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【Hugo】美化过程中遇到的问题</title>
         <link>https://bobQAQ003/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</link>
         <pubDate>Sat, 25 Oct 2025 09:40:08 +0800</pubDate>
         
         <guid>https://bobQAQ003/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
         <description>&lt;h2 id=&#34;引入pjax&#34;&gt;引入PJAX
-&lt;/h2&gt;&lt;h3 id=&#34;初步引入&#34;&gt;初步引入
-&lt;/h3&gt;&lt;ul&gt;
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;从 &lt;a class=&#34;link&#34; href=&#34;https://github.com/MoOx/pjax&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;MoOx/pjax&lt;/a&gt;（不带JQuery）这里引入&lt;/li&gt;
 &lt;li&gt;我们需要刷新的是&lt;code&gt;左侧边栏&lt;/code&gt; ，&lt;code&gt;右侧边栏&lt;/code&gt; 和&lt;code&gt;中间&lt;/code&gt;的内容&lt;/li&gt;
@@ -91,8 +90,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{{partial &amp;#34;footer/pjax.html&amp;#34;}}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;文章样式修复&#34;&gt;文章样式修复
-&lt;/h3&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;文章样式修复&#34;&gt;文章样式修复
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题描述&lt;/strong&gt;：
 &lt;ul&gt;
 &lt;li&gt;引入pjax后，重启&lt;code&gt;hugo server -D&lt;/code&gt;，发现文章样式丢失，手动点击刷新可以恢复&lt;/li&gt;
@@ -187,8 +186,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;主题切换修复&#34;&gt;主题切换修复
-&lt;/h3&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;主题切换修复&#34;&gt;主题切换修复
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题描述&lt;/strong&gt;：
 &lt;ul&gt;
 &lt;li&gt;切换页面后，左下角切换主题颜色按钮不生效&lt;/li&gt;
@@ -269,8 +268,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;文章搜索修复&#34;&gt;文章搜索修复
-&lt;/h3&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;文章搜索修复&#34;&gt;文章搜索修复
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题描述&lt;/strong&gt;：
 &lt;ul&gt;
 &lt;li&gt;使用文章搜索功能时，输入关键词，无任何搜索记录&lt;/li&gt;
@@ -412,8 +411,8 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;搜索内容跳转修复&#34;&gt;搜索内容跳转修复
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;搜索内容跳转修复&#34;&gt;搜索内容跳转修复
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;问题描述：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -470,9 +469,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;katex修复&#34;&gt;KaTeX修复
-&lt;/h3&gt;&lt;h4 id=&#34;katex渲染失效&#34;&gt;KaTex渲染失效
-&lt;/h4&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h2 id=&#34;katex修复&#34;&gt;KaTeX修复
+&lt;/h2&gt;&lt;h3 id=&#34;katex渲染失效&#34;&gt;KaTex渲染失效
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题描述：&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;含有 &lt;strong&gt;数学公式(KaTeX)&lt;/strong&gt; 的文章，里面的数学公式不能正常渲染出来&lt;/li&gt;
@@ -594,8 +593,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;引用块和公式块冲突&#34;&gt;引用块和公式块冲突
-&lt;/h4&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h3 id=&#34;引用块和公式块冲突&#34;&gt;引用块和公式块冲突
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;问题描述&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
@@ -626,8 +625,8 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;进度条加载&#34;&gt;进度条加载
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;进度条加载&#34;&gt;进度条加载
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题描述&lt;/strong&gt;：
 &lt;ul&gt;
 &lt;li&gt;使用了PJAX后，原先采用的进度条失效，采用另外的方法&lt;/li&gt;

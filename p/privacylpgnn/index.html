@@ -812,7 +812,6 @@ $$<h3 id="前向传播变化">前向传播变化
     document.addEventListener('pjax:complete', () => {
         
         window.Stack.init();
-        renderKaTeX();
         topbar.hide();
     })
 
@@ -848,9 +847,9 @@ $$<h3 id="前向传播变化">前向传播变化
         })
     }
 
-    
-    
-    
+    document.addEventListener('pjax:complete', () => {
+        renderKaTeX();
+    })
 </script>
     </body>
 </html>
