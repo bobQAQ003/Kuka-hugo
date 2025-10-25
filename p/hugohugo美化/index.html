@@ -1008,15 +1008,15 @@
     pjax._handleResponse = pjax.handleResponse;
     pjax.handleResponse = function(responseText, request, href, options) {
         if (request.responseText.match("<html")) {
-            if (responseText) {
-                
-                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
-                
-                let bodyClass = newDom.body.className;
-                document.body.setAttribute("class", bodyClass)
-            }
             
-            pjax._handleResponse(responseText, request, href, options);
+            let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+            
+            let bodyClass = newDom.body.className;
+            document.body.setAttribute("class", bodyClass)
+            
+            setTimeout(() => {
+                jax._handleResponse(responseText, request, href, options);
+            }, 1000)
         } else {
             
         }
@@ -1029,19 +1029,6 @@
             '0': 'rgba(255,  255, 255, 1)', 
             '1.0': 'rgba(0, 149, 234,  1)' 
         }
-    })
-
-    document.addEventListener('pjax:send', () => {
-        
-        topbar.show();
-    })
-
-    
-    document.addEventListener('pjax:complete', () => {
-        
-        window.Stack.init();
-        renderKaTeX();
-        topbar.hide();
     })
 
 
@@ -1075,6 +1062,20 @@
             setTimeout(resolve, time)
         })
     }
+
+    document.addEventListener('pjax:send', () => {
+        
+        topbar.show();
+    })
+
+    
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+        renderKaTeX();
+        topbar.hide();
+    })
+
 
 </script>
     </body>
