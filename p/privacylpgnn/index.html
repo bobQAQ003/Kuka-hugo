@@ -776,10 +776,7 @@ $$<h3 id="前向传播变化">前向传播变化
             
             let bodyClass = newDom.body.className;
             document.body.setAttribute("class", bodyClass)
-            
-            setTimeout(() => {
-                pjax._handleResponse(responseText, request, href, options);
-            }, 1000)
+            pjax._handleResponse(responseText, request, href, options);
         } else {
             
         }
