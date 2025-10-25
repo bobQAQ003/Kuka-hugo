@@ -10,7 +10,7 @@
 <meta property='og:description' content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
 <meta property='og:url' content='https://bobQAQ003/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-23T19:00:59&#43;08:00'/><meta property='article:modified_time' content='2025-10-24T16:23:32&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-23T19:00:59&#43;08:00'/><meta property='article:modified_time' content='2025-10-25T15:51:18&#43;08:00'/>
 <meta name="twitter:title" content="【Privacy】自适应隐私预算分配">
 <meta name="twitter:description" content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
@@ -358,11 +358,11 @@
 <li>区间2：度数大于 10 且小于等于 50</li>
 <li>区间3：度数大于 50</li>
 </ul>
-<p>根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设**$ε₁ = 0.1$<strong>，</strong>$ε₂ = 1$<strong>，并且使用</strong>指数分布**来决定隐私预算的具体值：</p>
+<p>根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设$ε₁ = 0.1$，$ε₂ = 1$，并且使用<strong>指数分布</strong>来决定隐私预算的具体值：</p>
 <ul>
-<li>对于区间1，为其分配较高的隐私预算（如接近**$ε₂ = 1$**）。</li>
+<li>对于区间1，为其分配较高的隐私预算（如接近$ε₂ = 1$）。</li>
 <li>对于区间，隐私预算会适中。</li>
-<li>对于区间3，隐私预算会较低（接近**$ε₁ = 0.1$**）。</li>
+<li>对于区间3，隐私预算会较低（接近$ε₁ = 0.1$）。</li>
 </ul>
 <p>隐私预算的分配在度数区间的划分上使用了<strong>指数分布</strong>。其公式为：
 </p>
@@ -433,12 +433,12 @@ $$<p>​	其中，$\lambda_t$ 是用于<strong>长期隐私预算约束</strong>
 <li><strong>隐私预算区间</strong>：$\epsilon_{\text{min}} = 1, \epsilon_{\text{max}} = 5$</li>
 <li>每轮的隐私预算分配动作是从区间 $[1, 5]$ 中选择的。</li>
 </ul>
-<p>在某个训练回合中，BGTplanner预测奖励为：
-</p>
+<p>在某个训练回合中，BGTplanner预测奖励为：</p>
+</blockquote>
 $$
-> \mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
-> $$<p>
-接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。</p>
+\mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
+$$<blockquote>
+<p>接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。</p>
 <p><strong>BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用</strong></p>
 </blockquote>
 <h2 id="探讨隐私预算的推荐值">探讨隐私预算的推荐值
@@ -559,17 +559,17 @@ $$
 <p>则：
 </p>
 $$
-> \mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
-> \\
-> \mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
-> $$<p>
+\mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
+\\
+\mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
+$$<p>
 再映射回预算：
 </p>
 $$
-> \epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
-> , \\
-> \epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
-> $$<p>
+\epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
+, \\
+\epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
+$$<p>
 <strong>PSL 方法通过 P-series 为敏感位置分配递减预算，再结合距离与节点度为邻居分配个性化预算，并支持时间动态调整，实现“重要位置多留数据，敏感位置多加噪声”的精细化隐私保护。</strong></p>
 </blockquote>
 
@@ -601,16 +601,17 @@ $$
 
 
         <span>
-            最后更新于 2025-10-24
+            最后更新于 2025-10-25
         </span>
     </section><section>
-        页面浏览量<span id="busuanzi_value_page_pv">Loading</span>
+        页面浏览量<span id="vercount_value_page_pv">loading... </span>
     </section>
 </footer>
 
 
     
-        <link 
+        
+<div class="math-katex"></div><link 
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
@@ -767,7 +768,7 @@ $$
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.8ab6d4d95c1398ebed68692e7b8418a42cbfd2f2ea81d09e316c338fe14d81ce.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -906,5 +907,98 @@ $$
 <script defer src="https://cn.vercount.one/js"></script>
 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+
+
+
+    <script src=https://bobQAQ003/Kuka-hugo/js/topbar.min.js></script>
+
+
+<script>
+    
+    var pjax = new Pjax({
+    selectors: [
+        ".main-container",
+    ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            
+            pjax._handleResponse(responseText, request, href, options);
+        } else {
+            
+        }
+    }
+
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255,  255, 255, 1)', 
+            '1.0': 'rgba(0, 149, 234,  1)' 
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        
+        topbar.show();
+    })
+
+    
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+        renderKaTeX();
+        topbar.hide();
+    })
+
+
+    
+    async function renderKaTeX() {
+        
+        let katex = document.querySelector(".math-katex");
+        if (!katex) {
+            return;
+        }
+        
+        while (typeof renderMathInElement !== 'function') {
+            await delay(500);
+        }        
+        
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"],
+        });
+    }
+    
+    
+
+    function delay(time) {
+        return new Promise(resolve => {
+            setTimeout(resolve, time)
+        })
+    }
+
+    
+    
+    
+</script>
     </body>
 </html>

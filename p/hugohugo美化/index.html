@@ -10,7 +10,7 @@
 <meta property='og:description' content="yaml配置 添加行号后复制代码会复制行号的问题 参考 小白hugo博客装修笔记（2）- B1ain’s Blog\n手动复制有行号 在/assets/scss/custom.scss 文件中添加如下内容，将行号设定为不可选中\n">
 <meta property='og:url' content='https://bobQAQ003/Kuka-hugo/p/hugohugo%E7%BE%8E%E5%8C%96/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T19:19:24&#43;08:00'/><meta property='article:modified_time' content='2025-10-24T21:45:56&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T19:19:24&#43;08:00'/><meta property='article:modified_time' content='2025-10-25T15:51:18&#43;08:00'/>
 <meta name="twitter:title" content="【Hugo】Hugo美化">
 <meta name="twitter:description" content="yaml配置 添加行号后复制代码会复制行号的问题 参考 小白hugo博客装修笔记（2）- B1ain’s Blog\n手动复制有行号 在/assets/scss/custom.scss 文件中添加如下内容，将行号设定为不可选中\n">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
@@ -524,7 +524,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="樱花背景">樱花背景
+</div><p>但这个方法可能在引入pjax后会失效，需要查看pjax文档进行监听</p>
+<h3 id="樱花背景">樱花背景
 </h3><p>下载地址【<a class="link" href="https://letere-gzj.github.io/hugo-stack/p/hugo/custom-background/sakura.js"  target="_blank" rel="noopener"
     >sakura.js</a>】(<kbd>CTRL</kbd> + <kbd>C</kbd> 保存)，并放到<code>assets/background</code>文件夹下</p>
 <p>在<code>layouts/partials/footer/custom.html</code>加入代码：</p>
@@ -642,7 +643,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {{- end -}}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">        页面浏览量<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;busuanzi_value_page_pv&#34;</span><span class="p">&gt;</span>Loading<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        页面浏览量<span class="p">&lt;</span><span class="nt">span</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;vercount_value_page_pv&#34;</span><span class="p">&gt;</span>loading... <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
@@ -689,16 +690,17 @@
 
 
         <span>
-            最后更新于 2025-10-24
+            最后更新于 2025-10-25
         </span>
     </section><section>
-        页面浏览量<span id="busuanzi_value_page_pv">Loading</span>
+        页面浏览量<span id="vercount_value_page_pv">loading... </span>
     </section>
 </footer>
 
 
     
-        <link 
+        
+<div class="math-katex"></div><link 
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
             ><script 
@@ -729,6 +731,28 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">【Hugo】美化过程中遇到的问题</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
@@ -833,7 +857,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.8ab6d4d95c1398ebed68692e7b8418a42cbfd2f2ea81d09e316c338fe14d81ce.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -972,5 +996,98 @@
 <script defer src="https://cn.vercount.one/js"></script>
 
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+
+
+
+    <script src=https://bobQAQ003/Kuka-hugo/js/topbar.min.js></script>
+
+
+<script>
+    
+    var pjax = new Pjax({
+    selectors: [
+        ".main-container",
+    ]
+    })
+
+    
+    pjax._handleResponse = pjax.handleResponse;
+    pjax.handleResponse = function(responseText, request, href, options) {
+        if (request.responseText.match("<html")) {
+            if (responseText) {
+                
+                let newDom = new DOMParser().parseFromString(responseText, 'text/html');
+                
+                let bodyClass = newDom.body.className;
+                document.body.setAttribute("class", bodyClass)
+            }
+            
+            pjax._handleResponse(responseText, request, href, options);
+        } else {
+            
+        }
+    }
+
+
+    
+    topbar.config({
+        barColors: {
+            '0': 'rgba(255,  255, 255, 1)', 
+            '1.0': 'rgba(0, 149, 234,  1)' 
+        }
+    })
+
+    document.addEventListener('pjax:send', () => {
+        
+        topbar.show();
+    })
+
+    
+    document.addEventListener('pjax:complete', () => {
+        
+        window.Stack.init();
+        renderKaTeX();
+        topbar.hide();
+    })
+
+
+    
+    async function renderKaTeX() {
+        
+        let katex = document.querySelector(".math-katex");
+        if (!katex) {
+            return;
+        }
+        
+        while (typeof renderMathInElement !== 'function') {
+            await delay(500);
+        }        
+        
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"],
+        });
+    }
+    
+    
+
+    function delay(time) {
+        return new Promise(resolve => {
+            setTimeout(resolve, time)
+        })
+    }
+
+    
+    
+    
+</script>
     </body>
 </html>

@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDams</copyright>
-        <lastBuildDate>Fri, 24 Oct 2025 17:52:04 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 25 Oct 2025 15:51:18 +0800</lastBuildDate><atom:link href="https://bobQAQ003/Kuka-hugo/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>【Privacy】LPGNN</title>
         <link>https://bobQAQ003/Kuka-hugo/p/privacylpgnn/</link>
         <pubDate>Fri, 24 Oct 2025 15:58:38 +0800</pubDate>
@@ -111,11 +111,11 @@ $$&lt;h3 id=&#34;前向传播变化&#34;&gt;前向传播变化
 &lt;li&gt;区间2：度数大于 10 且小于等于 50&lt;/li&gt;
 &lt;li&gt;区间3：度数大于 50&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设**$ε₁ = 0.1$&lt;strong&gt;，&lt;/strong&gt;$ε₂ = 1$&lt;strong&gt;，并且使用&lt;/strong&gt;指数分布**来决定隐私预算的具体值：&lt;/p&gt;
+&lt;p&gt;根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设$ε₁ = 0.1$，$ε₂ = 1$，并且使用&lt;strong&gt;指数分布&lt;/strong&gt;来决定隐私预算的具体值：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;对于区间1，为其分配较高的隐私预算（如接近**$ε₂ = 1$**）。&lt;/li&gt;
+&lt;li&gt;对于区间1，为其分配较高的隐私预算（如接近$ε₂ = 1$）。&lt;/li&gt;
 &lt;li&gt;对于区间，隐私预算会适中。&lt;/li&gt;
-&lt;li&gt;对于区间3，隐私预算会较低（接近**$ε₁ = 0.1$**）。&lt;/li&gt;
+&lt;li&gt;对于区间3，隐私预算会较低（接近$ε₁ = 0.1$）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;隐私预算的分配在度数区间的划分上使用了&lt;strong&gt;指数分布&lt;/strong&gt;。其公式为：
 &lt;/p&gt;
@@ -186,12 +186,12 @@ $$&lt;p&gt;​	其中，$\lambda_t$ 是用于&lt;strong&gt;长期隐私预算约
 &lt;li&gt;&lt;strong&gt;隐私预算区间&lt;/strong&gt;：$\epsilon_{\text{min}} = 1, \epsilon_{\text{max}} = 5$&lt;/li&gt;
 &lt;li&gt;每轮的隐私预算分配动作是从区间 $[1, 5]$ 中选择的。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;在某个训练回合中，BGTplanner预测奖励为：
-&lt;/p&gt;
+&lt;p&gt;在某个训练回合中，BGTplanner预测奖励为：&lt;/p&gt;
+&lt;/blockquote&gt;
 $$
-&gt; \mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
-&gt; $$&lt;p&gt;
-接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。&lt;/p&gt;
+\mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
+$$&lt;blockquote&gt;
+&lt;p&gt;接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;探讨隐私预算的推荐值&#34;&gt;探讨隐私预算的推荐值
@@ -312,17 +312,17 @@ $$
 &lt;p&gt;则：
 &lt;/p&gt;
 $$
-&gt; \mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
-&gt; \\
-&gt; \mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
-&gt; $$&lt;p&gt;
+\mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
+\\
+\mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
+$$&lt;p&gt;
 再映射回预算：
 &lt;/p&gt;
 $$
-&gt; \epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
-&gt; , \\
-&gt; \epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
-&gt; $$&lt;p&gt;
+\epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
+, \\
+\epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
+$$&lt;p&gt;
 &lt;strong&gt;PSL 方法通过 P-series 为敏感位置分配递减预算，再结合距离与节点度为邻居分配个性化预算，并支持时间动态调整，实现“重要位置多留数据，敏感位置多加噪声”的精细化隐私保护。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
