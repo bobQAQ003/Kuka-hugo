@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://bobQAQ003/Kuka-hugo/en/categories/</loc>
+    <loc>https://bobqaq003.github.io/Kuka-hugo/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka-hugo/categories/"
+                href="https://bobqaq003.github.io/Kuka-hugo/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka-hugo/en/categories/"
+                href="https://bobqaq003.github.io/Kuka-hugo/en/categories/"
                 />
   </url><url>
-    <loc>https://bobQAQ003/Kuka-hugo/en/</loc>
+    <loc>https://bobqaq003.github.io/Kuka-hugo/en/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka-hugo/"
+                href="https://bobqaq003.github.io/Kuka-hugo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka-hugo/en/"
+                href="https://bobqaq003.github.io/Kuka-hugo/en/"
                 />
   </url><url>
-    <loc>https://bobQAQ003/Kuka-hugo/en/tags/</loc>
+    <loc>https://bobqaq003.github.io/Kuka-hugo/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://bobQAQ003/Kuka-hugo/tags/"
+                href="https://bobqaq003.github.io/Kuka-hugo/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://bobQAQ003/Kuka-hugo/en/tags/"
+                href="https://bobqaq003.github.io/Kuka-hugo/en/tags/"
                 />
   </url>
 </urlset>
