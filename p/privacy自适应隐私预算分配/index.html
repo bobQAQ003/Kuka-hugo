@@ -895,9 +895,6 @@ $$<p>
 
 
 
-<script defer src="https://cn.vercount.one/js"></script>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
@@ -906,6 +903,9 @@ $$<p>
 
     <script src=/Kuka-hugo/js/topbar.min.js></script>
 
+
+
+<script defer src="https://cn.vercount.one/js"></script>
 
 <script>
     
@@ -971,6 +971,24 @@ $$<p>
         })
     }
 
+     
+    function initVercount() {
+        const timer = setInterval(() => {
+            if (typeof vercount === 'function') {
+                clearInterval(timer);
+                 
+                vercount({
+                    url:  location.pathname,          
+                    elem: '#vercount_value_page_pv',  
+                    api:  'https://cn.vercount.one'
+                });
+            }
+        }, 100);
+    }
+
+     
+    window.addEventListener('load', initVercount);
+
     document.addEventListener('pjax:send', () => {
         
         topbar.show();
@@ -982,6 +1000,7 @@ $$<p>
         window.Stack.init();
         renderKaTeX();
         topbar.hide();
+        initVercount();
     })
 
 
