@@ -791,6 +791,22 @@ $$<h3 id="前向传播变化">前向传播变化
         }
     })
 
+    
+    function initVerCount() {
+        
+        const existingScript = document.querySelector('script[src="https://cn.vercount.one/js"]');
+        if (existingScript) {
+            existingScript.remove();
+        }
+        
+        
+        const newScript = document.createElement('script');
+        newScript.src = 'https://cn.vercount.one/js';
+        newScript.defer = true;
+        
+        
+        document.head.appendChild(newScript);
+    }
 
     
     async function renderKaTeX() {
@@ -823,24 +839,6 @@ $$<h3 id="前向传播变化">前向传播变化
         })
     }
 
-     
-    function initVercount() {
-        const timer = setInterval(() => {
-            if (typeof vercount === 'function') {
-                clearInterval(timer);
-                 
-                vercount({
-                    url:  location.pathname,          
-                    elem: '#vercount_value_page_pv',  
-                    api:  'https://cn.vercount.one'
-                });
-            }
-        }, 100);
-    }
-
-     
-    window.addEventListener('load', initVercount);
-
     document.addEventListener('pjax:send', () => {
         
         topbar.show();
@@ -851,8 +849,8 @@ $$<h3 id="前向传播变化">前向传播变化
         
         window.Stack.init();
         renderKaTeX();
+        initVerCount();
         topbar.hide();
-        initVercount();
     })
 
 
