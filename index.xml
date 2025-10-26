@@ -724,7 +724,7 @@
 &lt;h3 id=&#34;左边栏副标题换行&#34;&gt;左边栏副标题换行
 &lt;/h3&gt;&lt;p&gt;参考 &lt;a class=&#34;link&#34; href=&#34;https://me.iftcblog.me/post/hugo-stack%e3%81%ae%e7%be%8e%e5%8c%96-ii/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo-stackの美化 II&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;找到 &lt;code&gt;layouts/partials/sidebar/left.html&lt;/code&gt;，修改第36行：&lt;/p&gt;
+&lt;p&gt;找到 &lt;code&gt;layouts/partials/sidebar/left.html&lt;/code&gt;，复制到博客的同名主文件夹下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -742,7 +742,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;blockquote class=&#34;alert alert-warn&#34;&gt;
-    &lt;p&gt;这里修改的是&lt;code&gt;stack&lt;/code&gt;模板下&lt;code&gt;hugo-theme-stack&lt;/code&gt;里的文件，&lt;del&gt;本人暂时不太理解怎么不修改源文件&lt;/del&gt;。或许，还有更好的方案。&lt;/p&gt;&lt;/blockquote&gt;
+    &lt;p&gt;当然也可以修改&lt;code&gt;stack&lt;/code&gt;模板下&lt;code&gt;hugo-theme-stack&lt;/code&gt;里的文件，&lt;del&gt;但不建议&lt;/del&gt;，毕竟还要通过源码进行学习。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;然后在 &lt;code&gt;hugo.yaml&lt;/code&gt; 中在要换行的地方加上 &lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -822,7 +822,29 @@
 &lt;/div&gt;&lt;p&gt;这样就可以呈现如下 Markdown 中的键盘样式：
 &lt;code&gt;&amp;lt;kbd&amp;gt;CTRL&amp;lt;/kbd&amp;gt; + &amp;lt;kbd&amp;gt;C&amp;lt;/kbd&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;&lt;/p&gt;
-&lt;h2 id=&#34;组件&#34;&gt;组件
+&lt;h3 id=&#34;图床链接图片居中&#34;&gt;图床链接图片居中
+&lt;/h3&gt;&lt;p&gt;目前 Stack 默认只支持本地引用的图片居中，而在使用 url 图片链接时没有居中格式。在博客主文件夹同名位置 &lt;code&gt;/assets/scss/partials/layout/article.scss&lt;/code&gt; Line 256 处（同级任意位置）增加以下代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Center image from url source
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;img&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;block&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;margin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;max-width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;na&#34;&gt;height&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;ni&#34;&gt;auto&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;组件&#34;&gt;组件
 &lt;/h2&gt;&lt;h3 id=&#34;顶部返回按钮&#34;&gt;顶部返回按钮
 &lt;/h3&gt;&lt;p&gt;参考&lt;a class=&#34;link&#34; href=&#34;https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Stack 主题的自定义 | L1nSn0w’s Log&lt;/a&gt;&lt;/p&gt;

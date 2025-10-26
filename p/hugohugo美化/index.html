@@ -6,11 +6,11 @@
 
 <link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/hugohugo%E7%BE%8E%E5%8C%96/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.6d3b9907b6b1b4cbfe40b378143e011c82f17b3f80520a65227bf646f2ad6c9b.css"><meta property='og:title' content="【Hugo】Hugo美化">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.eca2c34b3a62090b68c0178278398fb2716225df2b61bb50ed63bae656614be0.css"><meta property='og:title' content="【Hugo】Hugo美化">
 <meta property='og:description' content="yaml配置 添加行号后复制代码会复制行号的问题 参考 小白hugo博客装修笔记（2）- B1ain’s Blog\n手动复制有行号 在/assets/scss/custom.scss 文件中添加如下内容，将行号设定为不可选中\n">
 <meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/hugohugo%E7%BE%8E%E5%8C%96/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T19:19:24&#43;08:00'/><meta property='article:modified_time' content='2025-10-25T15:51:18&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T19:19:24&#43;08:00'/><meta property='article:modified_time' content='2025-10-26T21:49:45&#43;08:00'/>
 <meta name="twitter:title" content="【Hugo】Hugo美化">
 <meta name="twitter:description" content="yaml配置 添加行号后复制代码会复制行号的问题 参考 小白hugo博客装修笔记（2）- B1ain’s Blog\n手动复制有行号 在/assets/scss/custom.scss 文件中添加如下内容，将行号设定为不可选中\n">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
@@ -285,6 +285,7 @@
     <li><a href="#markdown样式">Markdown样式</a>
       <ol>
         <li><a href="#键盘样式">键盘样式</a></li>
+        <li><a href="#图床链接图片居中">图床链接图片居中</a></li>
       </ol>
     </li>
     <li><a href="#组件">组件</a>
@@ -393,7 +394,7 @@
 <h3 id="左边栏副标题换行">左边栏副标题换行
 </h3><p>参考 <a class="link" href="https://me.iftcblog.me/post/hugo-stack%e3%81%ae%e7%be%8e%e5%8c%96-ii/"  target="_blank" rel="noopener"
     >Hugo-stackの美化 II</a></p>
-<p>找到 <code>layouts/partials/sidebar/left.html</code>，修改第36行：</p>
+<p>找到 <code>layouts/partials/sidebar/left.html</code>，复制到博客的同名主文件夹下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -411,7 +412,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote class="alert alert-warn">
-    <p>这里修改的是<code>stack</code>模板下<code>hugo-theme-stack</code>里的文件，<del>本人暂时不太理解怎么不修改源文件</del>。或许，还有更好的方案。</p></blockquote>
+    <p>当然也可以修改<code>stack</code>模板下<code>hugo-theme-stack</code>里的文件，<del>但不建议</del>，毕竟还要通过源码进行学习。</p></blockquote>
 <p>然后在 <code>hugo.yaml</code> 中在要换行的地方加上 <code>&lt;br&gt;</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -491,7 +492,29 @@
 </div><p>这样就可以呈现如下 Markdown 中的键盘样式：
 <code>&lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt;</code></p>
 <p><kbd>CTRL</kbd> + <kbd>C</kbd></p>
-<h2 id="组件">组件
+<h3 id="图床链接图片居中">图床链接图片居中
+</h3><p>目前 Stack 默认只支持本地引用的图片居中，而在使用 url 图片链接时没有居中格式。在博客主文件夹同名位置 <code>/assets/scss/partials/layout/article.scss</code> Line 256 处（同级任意位置）增加以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-scss" data-lang="scss"><span class="line"><span class="cl"><span class="c1">// Center image from url source
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nt">p</span> <span class="o">&gt;</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="na">display</span><span class="o">:</span> <span class="ni">block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">margin</span><span class="o">:</span> <span class="mi">0</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">max-width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">height</span><span class="o">:</span> <span class="ni">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="组件">组件
 </h2><h3 id="顶部返回按钮">顶部返回按钮
 </h3><p>参考<a class="link" href="https://log.vaaat.com/posts/bloglab/hugo-stack/modify-hugo/"  target="_blank" rel="noopener"
     >Stack 主题的自定义 | L1nSn0w’s Log</a></p>
@@ -690,7 +713,7 @@
 
 
         <span>
-            最后更新于 2025-10-25
+            最后更新于 2025-10-26
         </span>
     </section><section>
         页面浏览量<span id="vercount_value_page_pv">loading... </span>

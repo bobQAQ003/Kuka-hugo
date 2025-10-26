@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.6d3b9907b6b1b4cbfe40b378143e011c82f17b3f80520a65227bf646f2ad6c9b.css"><meta property='og:title' content="【Hugo】美化过程中遇到的问题">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.eca2c34b3a62090b68c0178278398fb2716225df2b61bb50ed63bae656614be0.css"><meta property='og:title' content="【Hugo】美化过程中遇到的问题">
 <meta property='og:description' content="引入PJAX 从 MoOx/pjax（不带JQuery）这里引入 我们需要刷新的是左侧边栏 ，右侧边栏 和中间的内容 从源代码可以发现这些元素都被一个&lt;div class=&quot;main-container&quot;&gt;...&lt;/div&gt;包裹着 根据官方文档，在layouts/partials/footer/custom.html加入以下代码来引入PJAX： 1 2 3 4 5 6 7 8 9 &lt;!-- 【custom.html】 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/pjax/pjax.min.js&#34;&gt;&lt;/script&gt; &lt;script&gt; var pjax = new Pjax({ selectors: [ &#34;.main-container&#34; ] }) &lt;/script&gt; 我这里先创建layouts/partials/footer/pjax.html，再在custom.html里引用 1 2 3 4 5 6 7 8 9 10 11 12 &lt;!-- pjax.html --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/pjax/pjax.min.js&#34;&gt;&lt;/script&gt; &lt;script&gt; var pjax = new Pjax({ selectors: [ &#34;.main-container&#34;, ] }) &lt;/script&gt; &lt;!-- custom.html --&gt; {{partial &#34;footer/pjax.html&#34;}} 文章样式修复 问题描述： 引入pjax后，重启hugo server -D，发现文章样式丢失，手动点击刷新可以恢复 ">
 <meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/'>
 <meta property='og:site_name' content='KukaDam'>
