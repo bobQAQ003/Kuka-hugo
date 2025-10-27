@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.eca2c34b3a62090b68c0178278398fb2716225df2b61bb50ed63bae656614be0.css"><meta property='og:title' content="【Hugo】美化过程中遇到的问题">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.31e3c2c81d57d36584f87b0e6164edbbb96ac95c82afbc6eba7e2f5a3da8cd63.css"><meta property='og:title' content="【Hugo】美化过程中遇到的问题">
 <meta property='og:description' content="引入PJAX 从 MoOx/pjax（不带JQuery）这里引入 我们需要刷新的是左侧边栏 ，右侧边栏 和中间的内容 从源代码可以发现这些元素都被一个&lt;div class=&quot;main-container&quot;&gt;...&lt;/div&gt;包裹着 根据官方文档，在layouts/partials/footer/custom.html加入以下代码来引入PJAX： 1 2 3 4 5 6 7 8 9 &lt;!-- 【custom.html】 --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/pjax/pjax.min.js&#34;&gt;&lt;/script&gt; &lt;script&gt; var pjax = new Pjax({ selectors: [ &#34;.main-container&#34; ] }) &lt;/script&gt; 我这里先创建layouts/partials/footer/pjax.html，再在custom.html里引用 1 2 3 4 5 6 7 8 9 10 11 12 &lt;!-- pjax.html --&gt; &lt;script src=&#34;https://cdn.jsdelivr.net/npm/pjax/pjax.min.js&#34;&gt;&lt;/script&gt; &lt;script&gt; var pjax = new Pjax({ selectors: [ &#34;.main-container&#34;, ] }) &lt;/script&gt; &lt;!-- custom.html --&gt; {{partial &#34;footer/pjax.html&#34;}} 文章样式修复 问题描述： 引入pjax后，重启hugo server -D，发现文章样式丢失，手动点击刷新可以恢复 ">
 <meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/hugo%E7%BE%8E%E5%8C%96%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/'>
 <meta property='og:site_name' content='KukaDam'>
@@ -359,16 +359,16 @@
     >MoOx/pjax</a>（不带JQuery）这里引入</li>
 <li>我们需要刷新的是<code>左侧边栏</code> ，<code>右侧边栏</code> 和<code>中间</code>的内容</li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/wXMyi9tBxugYS8U.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025094633778"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/wXMyi9tBxugYS8U.png">
+		<img src="https://s2.loli.net/2025/10/25/wXMyi9tBxugYS8U.png" alt="image-20251025094633778"  />
+	</a>
+</div>
+</p>
 <ul>
 <li>从源代码可以发现这些元素都被一个<code>&lt;div class=&quot;main-container&quot;&gt;...&lt;/div&gt;</code>包裹着</li>
 <li>根据官方文档，在<code>layouts/partials/footer/custom.html</code>加入以下代码来引入PJAX：</li>
@@ -438,16 +438,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/jLG2r3WD1Xaif48.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025095926811"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/jLG2r3WD1Xaif48.png">
+		<img src="https://s2.loli.net/2025/10/25/jLG2r3WD1Xaif48.png" alt="image-20251025095926811"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>产生原因</strong>：
 <ul>
@@ -455,26 +455,26 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/noQTJtPu34cEKhA.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025095952597"
-	
-	
-></p>
-<p><img src="https://s2.loli.net/2025/10/25/3RA7ufq5TQkcW6x.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025100303630"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/noQTJtPu34cEKhA.png">
+		<img src="https://s2.loli.net/2025/10/25/noQTJtPu34cEKhA.png" alt="image-20251025095952597"  />
+	</a>
+</div>
+</p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/3RA7ufq5TQkcW6x.png">
+		<img src="https://s2.loli.net/2025/10/25/3RA7ufq5TQkcW6x.png" alt="image-20251025100303630"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>解决思路</strong>：
 <ul>
@@ -534,16 +534,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/p4cDRd7UfzFhWu2.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025101847388"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/p4cDRd7UfzFhWu2.png">
+		<img src="https://s2.loli.net/2025/10/25/p4cDRd7UfzFhWu2.png" alt="image-20251025101847388"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>产生原因</strong>：
 <ul>
@@ -551,16 +551,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/zKjZGcSIpYkDJm8.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025102047179"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/zKjZGcSIpYkDJm8.png">
+		<img src="https://s2.loli.net/2025/10/25/zKjZGcSIpYkDJm8.png" alt="image-20251025102047179"  />
+	</a>
+</div>
+</p>
 <ul>
 <li>
 <p><strong>解决思路</strong>：</p>
@@ -568,16 +568,16 @@
 <li>在PJAX切换完页面后，重新执行一遍<code>colorScheme.ts</code>的初始化，使元素重新绑定点击事件</li>
 <li>而<code>colorScheme.ts</code>被<code>main.ts</code>引用，在<code>main.ts</code>中执行了初始化，并且<code>main.ts</code>生成了全局变量 <strong>Stack</strong></li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/1G8OABih6yeKJVI.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025103737944"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/1G8OABih6yeKJVI.png">
+		<img src="https://s2.loli.net/2025/10/25/1G8OABih6yeKJVI.png" alt="image-20251025103737944"  />
+	</a>
+</div>
+</p>
 <ul>
 <li>所以在PJAX执行完后，使用全局变量 <strong>Stack</strong> ，执行里面的初始化方法，重新执行一遍脚本，来绑定点击事件</li>
 <li>PJAX官方文档也提供了PJAX执行完后的事件<code>pjax:complete</code>，监听这个事件，<strong>Stack</strong> 执行初始化就好</li>
@@ -621,16 +621,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/OL7UJ2TBfHvzWaK.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025105258492"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/OL7UJ2TBfHvzWaK.png">
+		<img src="https://s2.loli.net/2025/10/25/OL7UJ2TBfHvzWaK.png" alt="image-20251025105258492"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>解决思路：</strong>
 <ul>
@@ -639,16 +639,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/XDl5y9Ahnv8GsFJ.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025105800595"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/XDl5y9Ahnv8GsFJ.png">
+		<img src="https://s2.loli.net/2025/10/25/XDl5y9Ahnv8GsFJ.png" alt="image-20251025105800595"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>具体步骤</strong>：</li>
 <li>修改<code>assets/ts/search.tsx</code>代码，封装方法并export</li>
@@ -741,14 +741,16 @@
 </div><ul>
 <li>从Stack模板文件复制<code>layouts\partials\footer\components\script.html</code>，把<code>&quot;JSXFactory&quot; &quot;createElement&quot;</code>补充，改法参考<code>layouts\page\search.html</code>，</li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/26/1QSK7jReDH8rdgp.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/26/1QSK7jReDH8rdgp.png">
+		<img src="https://s2.loli.net/2025/10/26/1QSK7jReDH8rdgp.png" alt=""  />
+	</a>
+</div>
+</p>
 <h2 id="搜索内容跳转修复">搜索内容跳转修复
 </h2><ul>
 <li>
@@ -764,16 +766,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/AaqXc9tOkL73SCE.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025113007805"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/AaqXc9tOkL73SCE.png">
+		<img src="https://s2.loli.net/2025/10/25/AaqXc9tOkL73SCE.png" alt="image-20251025113007805"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>解决思路：</strong>
 <ul>
@@ -821,16 +823,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/BnLQJaTMzOhv92u.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025113619827"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/BnLQJaTMzOhv92u.png">
+		<img src="https://s2.loli.net/2025/10/25/BnLQJaTMzOhv92u.png" alt="image-20251025113619827"  />
+	</a>
+</div>
+</p>
 <ul>
 <li><strong>解决思路：</strong>
 <ul>
@@ -938,16 +940,16 @@
 <ul>
 <li>在引用块中又写了公式块，最终渲染出这样：</li>
 </ul>
-<p><img src="https://s2.loli.net/2025/10/25/tbTBMAdiXQPUzu6.png"
-	
-	
-	
-	loading="lazy"
-	
-		alt="image-20251025152358827"
-	
-	
-></p>
+<p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/25/tbTBMAdiXQPUzu6.png">
+		<img src="https://s2.loli.net/2025/10/25/tbTBMAdiXQPUzu6.png" alt="image-20251025152358827"  />
+	</a>
+</div>
+</p>
 </li>
 <li>
 <p><strong>产生原因</strong>：</p>
@@ -1138,6 +1140,13 @@
     </section><section>
         页面浏览量<span id="vercount_value_page_pv">loading... </span>
     </section>
+
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    
 </footer>
 
 
