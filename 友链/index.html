@@ -14,6 +14,153 @@
 <meta name="twitter:title" content="友链">
 <meta name="twitter:description" content="">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
+<div class="loading">
+    
+    <div class="newtons-cradle">
+        <div class="newtons-cradle__dot"></div>
+        <div class="newtons-cradle__dot"></div>
+        <div class="newtons-cradle__dot"></div>
+        <div class="newtons-cradle__dot"></div>
+    </div>
+</div>
+
+<style>
+    .loading {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 99;
+        background-color: #f5f5fa;
+    }
+	
+     
+
+      
+    .newtons-cradle {
+        --uib-size: 50px;
+        --uib-speed: 1.2s;
+        --uib-color: #474554;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--uib-size);
+        height: var(--uib-size);
+    }
+
+    .newtons-cradle__dot {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 25%;
+        transform-origin: center top;
+    }
+
+    .newtons-cradle__dot::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 25%;
+        border-radius: 50%;
+        background-color: var(--uib-color);
+    }
+
+    .newtons-cradle__dot:first-child {
+        animation: swing var(--uib-speed) linear infinite;
+    }
+
+    .newtons-cradle__dot:last-child {
+        animation: swing2 var(--uib-speed) linear infinite;
+    }
+
+    @keyframes swing {
+        0% {
+            transform: rotate(0deg);
+            animation-timing-function: ease-out;
+        }
+
+        25% {
+            transform: rotate(70deg);
+            animation-timing-function: ease-in;
+        }
+
+        50% {
+            transform: rotate(0deg);
+            animation-timing-function: linear;
+        }
+    }
+
+    @keyframes swing2 {
+        0% {
+            transform: rotate(0deg);
+            animation-timing-function: linear;
+        }
+
+        50% {
+            transform: rotate(0deg);
+            animation-timing-function: ease-out;
+        }
+
+        75% {
+            transform: rotate(-70deg);
+            animation-timing-function: ease-in;
+        }
+    }
+
+    .animated-stop {
+        animation-play-state: paused !important;
+    }
+
+    .scaleAndFadeout {
+        animation: scaleAndFadeOut 1.5s forwards;
+    }
+
+     
+    @keyframes scaleAndFadeOut {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+
+</style>
+
+<script>	
+    function initLoading() {
+        let loading = document.querySelector(".loading");
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            loading.style.display = "none";
+            
+            loadFinish();
+            
+            setTimeout(() => {
+                loading.style.display = "none";
+            }, 1500)
+        });
+    }
+
+    function loadFinish() {
+        
+        let newtons_cradle= document.querySelector(".newtons-cradle");
+        newtons_cradle.classList.add("animated-stop")
+        
+        let loading = document.querySelector(".loading");
+        loading.classList.add("scaleAndFadeout")
+    }
+
+    initLoading();
+</script>
 
     </head>
     <body class="
