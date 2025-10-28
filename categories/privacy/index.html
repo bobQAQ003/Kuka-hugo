@@ -135,31 +135,21 @@
 
 </style>
 
-<script>	
-    function initLoading() {
-        let loading = document.querySelector(".loading");
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            loading.style.display = "none";
-            
-            loadFinish();
-            
-            setTimeout(() => {
-                loading.style.display = "none";
-            }, 1500)
-        });
-    }
+<script>
+    
+    window.addEventListener('load', () => {
+        const loading = document.querySelector('.loading');
+        if (!loading) return;
 
-    function loadFinish() {
-        
-        let newtons_cradle= document.querySelector(".newtons-cradle");
-        newtons_cradle.classList.add("animated-stop")
-        
-        let loading = document.querySelector(".loading");
-        loading.classList.add("scaleAndFadeout")
-    }
+        setTimeout(() => loading.classList.add('scaleAndFadeout'), 1200);
+        setTimeout(() => loading.style.display = 'none', 2700);
+    });
 
-    initLoading();
+    
+    document.addEventListener('pjax:complete', () => {
+        const loading = document.querySelector('.loading');
+        if (loading) loading.style.display = 'none';
+    });
 </script>
 
     </head>
