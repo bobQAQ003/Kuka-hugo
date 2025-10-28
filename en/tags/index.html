@@ -242,7 +242,7 @@
 <style>
     @font-face {
       font-family: 'LXGWWenKaiLite';
-      src: url(https://bobqaq003.github.io/Kuka-hugo/font/LXGWWenKaiLite-Medium.ttf) format('truetype');
+      src: url(https://bobqaq003.github.io/Kuka-hugo/font/LXGWWenKaiLite-Medium.woff) format('woff');
     }
   
     :root {
@@ -391,8 +391,16 @@
             
             let newDom = new DOMParser().parseFromString(responseText, 'text/html');
             
+            
             let bodyClass = newDom.body.className;
             document.body.setAttribute("class", bodyClass)
+
+            
+            let newTitle = newDom.querySelector('title');
+            if (newTitle && newTitle.textContent) {
+                document.title = newTitle.textContent.trim();
+            }
+
             pjax._handleResponse(responseText, request, href, options);
         } else {
             
