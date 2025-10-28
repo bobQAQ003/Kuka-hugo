@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/privacylpgnn/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.31e3c2c81d57d36584f87b0e6164edbbb96ac95c82afbc6eba7e2f5a3da8cd63.css"><meta property='og:title' content="【Privacy】LPGNN">
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.c5fbf65f87612b2c62dcb8ffe6da4f55d2b5ea64264552bbad15447f43d12c03.css"><meta property='og:title' content="【Privacy】LPGNN">
 <meta property='og:description' content="对标签 y 用基于质心的扰动 转移矩阵变化 按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率p和扰动概率q，都是节点向量，每个节点都是不同的概率：CTRL + C\n">
 <meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/privacylpgnn/'>
 <meta property='og:site_name' content='KukaDam'>
@@ -383,36 +383,16 @@ T=\left[\left[\begin{array}{ccc}
 \end{array}\right]...\right]
 $$<h3 id="前向传播变化">前向传播变化
 </h3><p>得到上面三维的转移矩阵<code>data.T</code>，还要继续修改<code>forward</code>部分：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># p_yp_x = torch.matmul(p_y_x, data.T) if self.forward_correction else p_y_x  # P(y&#39;|x&#39;)</span>
-</span></span><span class="line"><span class="cl"><span class="n">p_yp_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">p_y_x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_correction</span> <span class="k">else</span> <span class="n">p_y_x</span>  <span class="c1"># P(y&#39;|x&#39;)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>还有<code>metrics</code>部分：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;train/loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;train/acc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred</span><span class="o">=</span><span class="n">p_y_x</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># &#39;train/maxacc&#39;: data.T[0, 0].item() * 100,</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;train/maxacc&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">dim1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><blockquote class="alert alert-note">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># p_yp_x = torch.matmul(p_y_x, data.T) if self.forward_correction else p_y_x  # P(y&#39;|x&#39;)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">p_yp_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">p_y_x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_correction</span> <span class="k">else</span> <span class="n">p_y_x</span>  <span class="c1"># P(y&#39;|x&#39;)</span>
+</span></span></code></pre></div><p>还有<code>metrics</code>部分：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="s1">&#39;train/loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="s1">&#39;train/acc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred</span><span class="o">=</span><span class="n">p_y_x</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="c1"># &#39;train/maxacc&#39;: data.T[0, 0].item() * 100,</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="s1">&#39;train/maxacc&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">dim1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote class="alert alert-note">
     <p>但是准确率变得极低</p></blockquote>
 <p><strong>原因可能：</strong></p>
 <ul>
@@ -631,7 +611,7 @@ $$<h3 id="前向传播变化">前向传播变化
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.8ab6d4d95c1398ebed68692e7b8418a42cbfd2f2ea81d09e316c338fe14d81ce.js" defer></script>
+            </script><script type="text/javascript" src="/Kuka-hugo/ts/main.8da0319ad5abf828875e009109370b26f5fec815a4b01f7fdac6c5513851ee39.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -645,6 +625,7 @@ $$<h3 id="前向传播变化">前向传播变化
 </script>
 <style>
     @font-face {
+      unicode-range: U+4E00-9FFF,U+0025-00F0,U+3040-30FF,U+1100-11FF,U+3130-318F,U+AC00-D7FF; 
       font-family: 'LXGWWenKaiLite';
       src: url(https://bobqaq003.github.io/Kuka-hugo/font/LXGWWenKaiLite-Medium.woff) format('woff');
       font-display: swap;
