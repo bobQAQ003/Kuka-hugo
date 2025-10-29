@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="对标签 y 用基于质心的扰动 转移矩阵变化 按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率p和扰动概率q，都是节点向量，每个节点都是不同的概率：CTRL + C\n">
-<title>【Privacy】LPGNN</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="论文LPGNN阅读笔记">
+<title>[Privacy] LPGNN：Locally private graph neural networks</title>
 
-<link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/privacylpgnn/'>
+<link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/privacy-lpgnnlocally-private-graph-neural-networks/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.5aa22979dcd16b786d2bab88575b84ca733958031c74eeb0f81bc87c8b449a65.css"><meta property='og:title' content="【Privacy】LPGNN">
-<meta property='og:description' content="对标签 y 用基于质心的扰动 转移矩阵变化 按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率p和扰动概率q，都是节点向量，每个节点都是不同的概率：CTRL + C\n">
-<meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/privacylpgnn/'>
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.5aa22979dcd16b786d2bab88575b84ca733958031c74eeb0f81bc87c8b449a65.css"><meta property='og:title' content="[Privacy] LPGNN：Locally private graph neural networks">
+<meta property='og:description' content="论文LPGNN阅读笔记">
+<meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/privacy-lpgnnlocally-private-graph-neural-networks/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T15:58:38&#43;08:00'/><meta property='article:modified_time' content='2025-10-24T17:52:04&#43;08:00'/>
-<meta name="twitter:title" content="【Privacy】LPGNN">
-<meta name="twitter:description" content="对标签 y 用基于质心的扰动 转移矩阵变化 按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率p和扰动概率q，都是节点向量，每个节点都是不同的概率：CTRL + C\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-24T15:58:38&#43;08:00'/><meta property='article:modified_time' content='2025-10-29T17:24:20&#43;08:00'/>
+<meta name="twitter:title" content="[Privacy] LPGNN：Locally private graph neural networks">
+<meta name="twitter:description" content="论文LPGNN阅读笔记">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
 <div class="loading">
     
@@ -337,29 +337,6 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="https://bobqaq003.github.io/Kuka-hugo/en/" >English</option>
-                                
-                                    <option value="https://bobqaq003.github.io/Kuka-hugo/" selected>中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -409,12 +386,39 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#对标签-y-用基于质心的扰动">对标签 y 用基于质心的扰动</a>
+    <li><a href="#摘要">摘要</a>
       <ol>
-        <li><a href="#转移矩阵变化">转移矩阵变化</a></li>
-        <li><a href="#前向传播变化">前向传播变化</a></li>
+        <li><a href="#核心贡献">核心贡献</a></li>
       </ol>
     </li>
+    <li><a href="#问题定义与背景">问题定义与背景</a>
+      <ol>
+        <li><a href="#图结构">图结构</a></li>
+        <li><a href="#目标">目标</a></li>
+      </ol>
+    </li>
+    <li><a href="#图神经网络gnn基础">图神经网络（GNN）基础</a></li>
+    <li><a href="#局部差分隐私ldp">局部差分隐私（LDP）</a></li>
+    <li><a href="#整体框架">整体框架</a>
+      <ol>
+        <li><a href="#流程">流程</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心组件">核心组件</a>
+      <ol>
+        <li><a href="#multi-bit-encoder节点端">Multi-bit Encoder（节点端）</a></li>
+        <li><a href="#multi-bit-rectifier服务器端">Multi-bit Rectifier（服务器端）</a></li>
+        <li><a href="#kprop多跳聚合层">KProp（多跳聚合层）</a></li>
+        <li><a href="#标签扰动randomized-response">标签扰动（Randomized Response）</a></li>
+        <li><a href="#drop鲁棒训练框架">Drop：鲁棒训练框架</a>
+          <ol>
+            <li><a href="#挑战">挑战</a></li>
+            <li><a href="#解决方案">解决方案</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#符号表文中主要符号">符号表（文中主要符号）</a></li>
   </ol>
 </nav>
         </div>
@@ -446,9 +450,13 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/Kuka-hugo/p/privacylpgnn/">【Privacy】LPGNN</a>
+            <a href="/Kuka-hugo/p/privacy-lpgnnlocally-private-graph-neural-networks/">[Privacy] LPGNN：Locally private graph neural networks</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            论文LPGNN阅读笔记
+        </h3>
         
     </div>
 
@@ -484,64 +492,200 @@
     <section class="article-content">
     
     
-    <h2 id="对标签-y-用基于质心的扰动">对标签 y 用基于质心的扰动
-</h2><h3 id="转移矩阵变化">转移矩阵变化
-</h3><p>按照对特征的逻辑，每个节点标签扰动都不同，所以得到的保留概率<code>p</code>和扰动概率<code>q</code>，都是节点向量，每个节点都是不同的概率：<kbd>CTRL</kbd> + <kbd>C</kbd></p>
-<blockquote>
-<p>比如扰动2000个节点，那么:</p>
-<p>p=torch.Size([0.7,0.7,0.8&hellip;.], 2000)，</p>
-<p>q=torch.Size([0.1,0.1,0.2&hellip;], 2000)</p>
-</blockquote>
-<p>但是原来采用RR的扰动，对标签的保留概率<code>p</code>和扰动概率<code>q</code>是标量，</p>
-<blockquote>
-<p>不论多少节点，p=0.7, q=0.1</p>
-</blockquote>
-<p>这是不同的地方，目前为止没什么大问题，问题是在标签部分需要计算一个<strong>转移矩阵</strong><code>data.T</code>，大小是 <code>[num_classes, num_classes]</code>，<code>T[i,j]</code> 表示真实类别 <code>i</code> 被扰动成类别 <code>j</code> 的概率，假如是个3分类，T就是这样：
-</p>
-$$
-T=\left[\begin{array}{ccc}
-0.7 & 0.1 & 0.1 \\
-0.1 & 0.7 & 0.1 \\
-0.1 & 0.1 & 0.7
-\end{array}\right]
-$$<blockquote>
-<p>标签 0 有 70% 的概率保持为标签 0，10% 的概率变为标签 1，10% 的概率变为标签 2</p>
-</blockquote>
-<p>如果计算每个节点标签的扰动概率不同，那么转移矩阵<code>data.T</code>就要变成三维的了：<code>[num_nodes,num_classes, num_classes]</code>，节点<code>n</code>的标签 <code>i</code>被扰动成类别 <code>j</code> 的概率：
-</p>
-$$
-T=\left[\left[\begin{array}{ccc}
-0.7 & 0.1 & 0.1 \\
-0.1 & 0.7 & 0.1 \\
-0.1 & 0.1 & 0.7
-\end{array}\right],\left[\begin{array}{ccc}
-0.8 & 0.1 & 0.1 \\
-0.1 & 0.8 & 0.1 \\
-0.1 & 0.1 & 0.8
-\end{array}\right]...\right]
-$$<h3 id="前向传播变化">前向传播变化
-</h3><p>得到上面三维的转移矩阵<code>data.T</code>，还要继续修改<code>forward</code>部分：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># p_yp_x = torch.matmul(p_y_x, data.T) if self.forward_correction else p_y_x  # P(y&#39;|x&#39;)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">p_yp_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">p_y_x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_correction</span> <span class="k">else</span> <span class="n">p_y_x</span>  <span class="c1"># P(y&#39;|x&#39;)</span>
-</span></span></code></pre></div><p>还有<code>metrics</code>部分：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="s1">&#39;train/loss&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="s1">&#39;train/acc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">pred</span><span class="o">=</span><span class="n">p_y_x</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">train_mask</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="c1"># &#39;train/maxacc&#39;: data.T[0, 0].item() * 100,</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="s1">&#39;train/maxacc&#39;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">dim1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><blockquote class="alert alert-note">
-    <p>但是准确率变得极低</p></blockquote>
-<p><strong>原因可能：</strong></p>
+    <blockquote class="alert alert-note">
+    <p>论文来自于：</p>
+<p>Sajadmanesh S, Gatica-Perez D. Locally private graph neural networks[C]//Proceedings of the 2021 ACM SIGSAC conference on computer and communications security. 2021: 2130-2145.</p></blockquote>
+<h2 id="摘要">摘要
+</h2><p>图神经网络（GNN）在学习节点表示以完成多种图推理任务时表现出色。然而，当节点代表个人或涉及敏感信息的人类相关变量时，基于图数据的学习可能引发隐私问题。尽管已有大量针对非关系数据的隐私保护深度学习技术，但针对图上深度学习算法的隐私问题研究较少。</p>
+<p>本文研究<strong>节点数据隐私问题</strong>：图节点拥有潜在敏感数据（特征向量与标签）保持私有，但可被中心服务器用于训练GNN。提出一种基于<strong>局部差分隐私</strong>（LDP）的隐私保护GNN训练算法，具备形式化的隐私保证。</p>
+<h3 id="核心贡献">核心贡献
+</h3><ol>
+<li><strong>多比特机制（Multi-bit Mechanism）</strong>：LDP编码器 + 无偏整流器，实现高效通信下特征扰动与收集。</li>
+<li><strong>KProp层</strong>：基于多跳聚合的简单图卷积层，增强去噪能力，提升首层卷积估计精度。</li>
+<li><strong>Drop鲁棒训练框架</strong>：利用KProp对噪声标签进行去噪，提升泛化性能。</li>
+<li>理论分析：隐私保证、误差界。</li>
+<li>实验验证：在真实数据集上实现良好的<strong>准确率-隐私权衡</strong>。</li>
+</ol>
+<hr>
+<h2 id="问题定义与背景">问题定义与背景
+</h2><h3 id="图结构">图结构
+</h3><ul>
+<li>图 $ G = (V, E, X, Y) $
 <ul>
-<li>按照目前的翻转概率（84%）进行扰动，训练中剩下的正确的节点就比较少，模型学到的错误标签较多</li>
-<li>高噪声下，<strong>KProp</strong>层的传播起负面效果，污染了干净节点，没有专门的抗噪声设计</li>
+<li>$ V = V_L \cup V_U $：有标签节点 + 无标签节点</li>
+<li>$ X \in \mathbb{R}^{|V| \times d} $：特征矩阵（私有）</li>
+<li>$ Y \in {0,1}^{|V| \times c} $：标签矩阵（私有）</li>
 </ul>
-<p><strong>解决：</strong></p>
+</li>
+<li>服务器拥有：$ V, E $</li>
+<li>节点私有：$ X, Y $</li>
+</ul>
+<h3 id="目标">目标
+</h3><p>在不泄露原始 $ X, Y $ 的前提下，训练GNN。</p>
+<h2 id="图神经网络gnn基础">图神经网络（GNN）基础
+</h2><p>每层嵌入更新：</p>
+$$
+h^l_{N(v)} = \text{Aggregate}^l \left( \{ h^{l-1}_u \mid \forall u \in \mathcal{N}(v) \} \right)
+$$$$
+h^l_v = \text{Update}^l \left( h^l_{N(v)} \right)
+$$<ul>
+<li>初始：$ h^0_v = x_v $</li>
+<li>最后一层输出 $ c $ 维向量 + softmax 预测标签</li>
+</ul>
+<hr>
+<h2 id="局部差分隐私ldp">局部差分隐私（LDP）
+</h2><p><strong>定义 2.1</strong>：机制 $ M $ 满足 $ \epsilon $-LDP，若对任意输入 $ x, x&rsquo; $ 和输出 $ y $：</p>
+$$
+\Pr[M(x)=y] \leq e^\epsilon \Pr[M(x')=y]
+$$<ul>
+<li>$ \epsilon $：隐私预算（越小越强）</li>
+<li>实现方式：本地扰动 → 聚合去噪</li>
+</ul>
+<hr>
+<h2 id="整体框架">整体框架
+</h2><p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/29/g9lNDuoBvGJ5zxQ.png">
+		<img src="https://s2.loli.net/2025/10/29/g9lNDuoBvGJ5zxQ.png" alt="image-20251029165231143"  />
+	</a>
+</div>
+</p>
+<h3 id="流程">流程
+</h3><ol>
+<li><strong>节点本地扰动</strong> 每个节点用 <strong>Multi-bit Encoder</strong> 对特征进行局部扰动，生成编码向量；有标签节点用 <strong>广义随机响应</strong> 扰动标签。一次性上传至服务器。</li>
+<li><strong>服务器去偏估计</strong> 服务器用 <strong>Multi-bit Rectifier</strong> 对所有扰动向量进行无偏校正，估计近似首层卷积输入。</li>
+<li><strong>插入 KProp 去噪</strong> 在 GNN 前插入 <strong>KProp 多跳聚合层</strong>，通过 K 步线性传播平均化噪声，增强低度节点表示。</li>
+<li><strong>GNN 训练（Drop 鲁棒框架）</strong>
 <ul>
-<li><input disabled="" type="checkbox"> KProp加上去偏层</li>
-<li><input disabled="" type="checkbox"> Kprop加上噪声过滤的方法</li>
+<li>前向传播得到预测概率</li>
+<li>用 KProp 聚合预测概率，生成“净化标签”</li>
+<li>结合扰动标签 + 净化标签计算损失</li>
+<li>反向传播更新模型</li>
 </ul>
+</li>
+<li><strong>迭代至收敛</strong> 每轮重复扰动→上传→去偏→训练，直至模型收敛。</li>
+<li><strong>推理</strong> 训练好的 GNN 直接用于新节点分类（无需再扰动）。</li>
+</ol>
+<blockquote>
+<p><strong>核心特点</strong>：<strong>一次通信</strong> + <strong>聚合去噪</strong> + <strong>标签净化</strong>，实现 <strong>隐私保护下的高精度 GNN 训练</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="核心组件">核心组件
+</h2><h3 id="multi-bit-encoder节点端">Multi-bit Encoder（节点端）
+</h3><ul>
+<li><strong>输入</strong>：节点 $ v $ 的原始特征 $ x_v \in \mathbb{R}^d $</li>
+<li><strong>输出</strong>：扰动编码向量</li>
+<li><strong>目标</strong>：高维特征下高效通信 + LDP保证</li>
+<li><strong>方法</strong>：扩展1-bit机制至多维，逐维度采样并翻转</li>
+</ul>
+<blockquote>
+<p>每个节点仅需<strong>一次通信</strong>发送扰动特征</p>
+</blockquote>
+<h3 id="multi-bit-rectifier服务器端">Multi-bit Rectifier（服务器端）
+</h3><ul>
+<li><strong>输入</strong>：所有节点的扰动编码</li>
+<li><strong>输出</strong>：无偏估计的聚合特征</li>
+<li><strong>作用</strong>：校正统计偏差，近似首层图卷积</li>
+<li><strong>关键</strong>：利用<strong>线性聚合</strong>作为天然去噪机制</li>
+</ul>
+<blockquote>
+<p>聚合平均化注入的差分隐私噪声</p>
+</blockquote>
+<h3 id="kprop多跳聚合层">KProp（多跳聚合层）
+</h3>$$
+h_v^{(k)} = (1 - \alpha) h_v^{(k-1)} + \alpha \cdot \text{Aggregate}(h_u^{(k-1)}, u \in \mathcal{N}(v))
+$$<ul>
+<li><strong>输入</strong>：扰动后特征</li>
+<li><strong>操作</strong>：迭代K次线性聚合，扩展有效邻域至K跳</li>
+<li><strong>作用</strong>：
+<ol>
+<li>增强去噪（噪声 ~ 1/√聚合规模）</li>
+<li>提升低度节点估计精度</li>
+<li>可插入任意GNN前作为预处理层</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>特别适用于<strong>幂律分布图</strong>（多数节点度数低）</p>
+</blockquote>
+<h3 id="标签扰动randomized-response">标签扰动（Randomized Response）
+</h3><p>正确标签保留概率：$ p = \frac{e^\epsilon}{e^\epsilon + c - 1} $</p>
+<p>其他类别随机翻转为：$ q = \frac{1}{e^\epsilon + c - 1} $</p>
+<h3 id="drop鲁棒训练框架">Drop：鲁棒训练框架
+</h3><h4 id="挑战">挑战
+</h4><ul>
+<li>噪声标签 → 过拟合 → 泛化差</li>
+<li>无干净验证集 → 难以调参</li>
+</ul>
+<h4 id="解决方案">解决方案
+</h4><ol>
+<li>利用KProp对<strong>标签预测概率</strong>进行多跳聚合</li>
+<li>估计每个节点的<strong>邻域标签频率</strong></li>
+<li>选择频率最高者作为“净化标签”</li>
+<li>用于损失计算或早停判断</li>
+</ol>
+<blockquote>
+<p>不依赖任何干净数据（特征/标签）</p>
+</blockquote>
+<hr>
+<h2 id="符号表文中主要符号">符号表（文中主要符号）
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>符号</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$ G = (V, E, X, Y) $</td>
+          <td>图结构</td>
+      </tr>
+      <tr>
+          <td>$ V_L, V_U $</td>
+          <td>有/无标签节点集</td>
+      </tr>
+      <tr>
+          <td>$ x_v \in \mathbb{R}^d $</td>
+          <td>节点 $ v $ 的特征向量</td>
+      </tr>
+      <tr>
+          <td>$ y_v \in {0,1}^c $</td>
+          <td>节点 $ v $ 的one-hot标签</td>
+      </tr>
+      <tr>
+          <td>$ \mathcal{N}(v) $</td>
+          <td>节点 $ v $ 的邻居集（可含自身）</td>
+      </tr>
+      <tr>
+          <td>$ h^l_v $</td>
+          <td>第 $ l $ 层节点 $ v $ 的嵌入</td>
+      </tr>
+      <tr>
+          <td>$ \epsilon $</td>
+          <td>隐私预算</td>
+      </tr>
+      <tr>
+          <td>$ K $</td>
+          <td>KProp 步数</td>
+      </tr>
+      <tr>
+          <td>$ M(\cdot) $</td>
+          <td>LDP扰动机制</td>
+      </tr>
+      <tr>
+          <td>$ \text{MB-Encoder} $</td>
+          <td>多比特编码器</td>
+      </tr>
+      <tr>
+          <td>$ \text{MB-Rectifier} $</td>
+          <td>多比特整流器</td>
+      </tr>
+  </tbody>
+</table></div>
 
 </section>
 
@@ -571,7 +715,7 @@ $$<h3 id="前向传播变化">前向传播变化
 
 
         <span>
-            最后更新于 2025-10-24
+            最后更新于 2025-10-29
         </span>
     </section>
 
@@ -631,12 +775,25 @@ $$<h3 id="前向传播变化">前向传播变化
             
                 
 <article class="">
-    <a href="/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/">
+    <a href="/Kuka-hugo/p/privacy-%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">【Privacy】自适应隐私预算分配</h2>
+            <h2 class="article-title">[Privacy] 自适应隐私预算分配</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases</h2>
         </div>
     </a>
 </article>

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
-<title>【Privacy】自适应隐私预算分配</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="论文Grace阅读笔记">
+<title>[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases</title>
 
-<link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
+<link rel='canonical' href='https://bobqaq003.github.io/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/'>
 
-<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.5aa22979dcd16b786d2bab88575b84ca733958031c74eeb0f81bc87c8b449a65.css"><meta property='og:title' content="【Privacy】自适应隐私预算分配">
-<meta property='og:description' content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
-<meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/'>
+<link rel="stylesheet" href="/Kuka-hugo/scss/style.min.5aa22979dcd16b786d2bab88575b84ca733958031c74eeb0f81bc87c8b449a65.css"><meta property='og:title' content="[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases">
+<meta property='og:description' content="论文Grace阅读笔记">
+<meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-23T19:00:59&#43;08:00'/><meta property='article:modified_time' content='2025-10-25T15:51:18&#43;08:00'/>
-<meta name="twitter:title" content="【Privacy】自适应隐私预算分配">
-<meta name="twitter:description" content="按度数分布划分区间，总隐私预算以区间 Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.\nYuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.\n给出一个总体区间 $[ε_1, ε_2]$，再按节点度数把用户分桶，并把 $[ε_1, ε_2]$切成多个子区间；每个用户的“初始”隐私预算 $ε_s$ 会从对应子区间里随机采样（按指数分布采样），因此不同用户拿到的起始预算彼此不同\n">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-29T16:32:18&#43;08:00'/><meta property='article:modified_time' content='2025-10-29T17:24:20&#43;08:00'/>
+<meta name="twitter:title" content="[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases">
+<meta name="twitter:description" content="论文Grace阅读笔记">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
 <div class="loading">
     
@@ -337,29 +337,6 @@
         
         <li class="menu-bottom-section">
             <ol class="menu">
-                    
-                        <li id="i18n-switch">  
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M4 5h7" />
-  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
-  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
-  <path d="M12 20l4 -9l4 9" />
-  <path d="M19.1 18h-6.2" />
-</svg>
-
-
-
-                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
-                                
-                                    <option value="https://bobqaq003.github.io/Kuka-hugo/en/" >English</option>
-                                
-                                    <option value="https://bobqaq003.github.io/Kuka-hugo/" selected>中文</option>
-                                
-                            </select>
-                        </li>
-                    
-                
 
                 
                     <li id="dark-mode-toggle">
@@ -409,12 +386,41 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#按度数分布划分区间总隐私预算以区间">按度数分布划分区间，总隐私预算以区间</a></li>
-    <li><a href="#拓扑重要性个性化总隐私预算以区间">拓扑重要性个性化，总隐私预算以区间</a></li>
-    <li><a href="#上下文多臂赌博机cmab算法分配区间">上下文多臂赌博机（CMAB）算法分配（区间）</a></li>
-    <li><a href="#探讨隐私预算的推荐值">探讨隐私预算的推荐值</a></li>
-    <li><a href="#基于遗传算法ga的隐私预算分配">基于遗传算法（GA）的隐私预算分配</a></li>
-    <li><a href="#基于隐私安全等级privacy-security-level-psl">基于隐私安全等级（Privacy Security Level, PSL）</a></li>
+    <li><a href="#摘要">摘要</a></li>
+    <li><a href="#问题背景与动机">问题背景与动机</a>
+      <ol>
+        <li><a href="#图1真实图的度分布与性能偏差">图1：真实图的度分布与性能偏差</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心挑战">核心挑战</a></li>
+    <li><a href="#整体框架">整体框架</a>
+      <ol>
+        <li><a href="#流程">流程</a></li>
+      </ol>
+    </li>
+    <li><a href="#核心模块">核心模块</a>
+      <ol>
+        <li><a href="#自蒸馏graph-self-distillation">自蒸馏（Graph Self-Distillation）</a>
+          <ol>
+            <li><a href="#思路">思路</a></li>
+            <li><a href="#实现">实现</a></li>
+          </ol>
+        </li>
+        <li><a href="#图补全graph-completion">图补全（Graph Completion）</a>
+          <ol>
+            <li><a href="#目标">目标</a></li>
+            <li><a href="#建模为多标签预测任务">建模为多标签预测任务</a></li>
+          </ol>
+        </li>
+        <li><a href="#标签传播label-propagation">标签传播（Label Propagation）</a>
+          <ol>
+            <li><a href="#作用">作用</a></li>
+            <li><a href="#预测阶段流程">预测阶段流程</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#符号表">符号表</a></li>
   </ol>
 </nav>
         </div>
@@ -437,8 +443,8 @@
                 笔记
             </a>
         
-            <a href="/Kuka-hugo/categories/privacy/" >
-                Privacy
+            <a href="/Kuka-hugo/categories/fairness/" >
+                Fairness
             </a>
         
     </header>
@@ -446,9 +452,13 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/Kuka-hugo/p/privacy%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/">【Privacy】自适应隐私预算分配</a>
+            <a href="/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/">[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            论文Grace阅读笔记
+        </h3>
         
     </div>
 
@@ -468,7 +478,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-10-23</time>
+                <time class="article-time--published">2025-10-29</time>
             </div>
         
 
@@ -484,232 +494,205 @@
     <section class="article-content">
     
     
-    <h2 id="按度数分布划分区间总隐私预算以区间">按度数分布划分区间，总隐私预算以区间
-</h2><blockquote>
-<p>Yuan Y, Lei D, Fan Q, et al. Achieving Adaptive Privacy-Preserving Graph Neural Networks Training in Cloud Environment[C]//2024 IEEE 12th International Conference on Information, Communication and Networks (ICICN). IEEE, 2024: 181-186.</p>
-<p>Yuan Y, Lei D, Zhang C, et al. Personalized differential privacy graph neural network[J]. IEEE/CAA Journal of Automatica Sinica, 2025.</p>
-</blockquote>
-<p>给出一个总体区间 $[ε_1, ε_2]$，再按<strong>节点度数</strong>把用户分桶，并把 $[ε_1, ε_2]$切成多个<strong>子区间</strong>；每个用户的“初始”隐私预算 $ε_s$ 会<strong>从对应子区间里随机采样</strong>（按指数分布采样），因此不同用户拿到的起始预算彼此不同</p>
-<p>根据度数的大小，我们可以将这些节点划分成几个区间。例如：</p>
-<ul>
-<li>区间1：度数小于等于 10</li>
-<li>区间2：度数大于 10 且小于等于 50</li>
-<li>区间3：度数大于 50</li>
-</ul>
-<p>根据区间的划分，隐私预算会在区间 $[ε₁, ε₂]$ 内进行分配。假设$ε₁ = 0.1$，$ε₂ = 1$，并且使用<strong>指数分布</strong>来决定隐私预算的具体值：</p>
-<ul>
-<li>对于区间1，为其分配较高的隐私预算（如接近$ε₂ = 1$）。</li>
-<li>对于区间，隐私预算会适中。</li>
-<li>对于区间3，隐私预算会较低（接近$ε₁ = 0.1$）。</li>
-</ul>
-<p>隐私预算的分配在度数区间的划分上使用了<strong>指数分布</strong>。其公式为：
+    <blockquote class="alert alert-note">
+    <p>论文来自：</p>
+<p>Xu H, Xiang L, Huang F, et al. Grace: Graph self-distillation and completion to mitigate degree-related biases[C]//Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023: 2813-2824.</p></blockquote>
+<h2 id="摘要">摘要
+</h2><p>真实世界图普遍呈现<strong>长尾度分布</strong>（long-tail degree distribution），大量节点为<strong>低度节点</strong>（low-degree nodes）。尽管 GNN 在节点分类任务上表现出色，但其性能严重依赖丰富连接，<strong>对低度节点表示不足</strong>，导致显著的<strong>度相关偏差（degree-related bias）</strong>。</p>
+<p>本文提出 <strong>Grace</strong>，通过以下两大机制缓解该问题：</p>
+<ol>
+<li><strong>自蒸馏（Graph Self-Distillation）</strong>：增强低度节点的<strong>自表示能力（self-representation）</strong></li>
+<li><strong>图补全（Graph Completion）</strong>：提升低度节点的<strong>邻域同质性比率（Neighborhood Homophily Ratio, NHR）</strong></li>
+</ol>
+<p>结合 <strong>标签传播（Label Propagation）</strong> 防止错误传播。实验表明，Grace 在平衡整体性能与低度节点准确率方面显著优于现有方法。</p>
+<hr>
+<h2 id="问题背景与动机">问题背景与动机
+</h2><h3 id="图1真实图的度分布与性能偏差">图1：真实图的度分布与性能偏差
+</h3><p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/29/w6Gzyj312XMhgCK.png">
+		<img src="https://s2.loli.net/2025/10/29/w6Gzyj312XMhgCK.png" alt="image-20251029164055547"  />
+	</a>
+</div>
 </p>
-$$
-\text{Sample from exponential distribution } f(y, \lambda) = \lambda e^{-\lambda y}, \, (y \geq 0)
-$$<p>
-之后用户用各自的 $ε_s$ 加噪：$\hat X_s=f(X_s)+\mathrm{Lap}(\Delta f/ε_s)$，</p>
-<blockquote>
-<p><strong>APPGNN</strong>按照<strong>节点度数</strong>划分为若干个区间，并将 <strong>隐私预算区间</strong> 对应划分，根据节点度数的 <strong>比例分布</strong>，将其 <strong>映射到指数分布的分位数区间</strong>，从中 <strong>采样出个性化的隐私预算</strong>。</p>
-</blockquote>
-<h2 id="拓扑重要性个性化总隐私预算以区间">拓扑重要性个性化，总隐私预算以区间
-</h2><blockquote>
-<p>Lei D, Song Z, Yuan Y, et al. Achieving Personalized Privacy-Preserving Graph Neural Network via Topology Awareness[C]//Proceedings of the ACM on Web Conference 2025. 2025: 3552-3560.</p>
-</blockquote>
-<p>提出“邻接信息熵”（Adjacency Information Entropy, AIE）来衡量节点拓扑重要性，既考虑直连邻居也考虑间接关系：先算邻接度 $AD_u=\sum_{v\in \mathcal N_u} D_v$，再定义概率 $p_u=D_u/AD_v$，最后得信息熵式的 $AIE_u=-\sum_{v\in \mathcal N_u}(p_u\log_2 p_u),p_v$（式(4)–(6)）。重要性越高→隐私敏感度越高。</p>
-<p>将总预算区间 $[,\epsilon_b,\epsilon_e,]$ 按节点隐私敏感度分成 $M$ 个等级与对应<strong>子区间</strong>，并假设预算在该区间内<strong>服从指数分布</strong>（真实网络度分布常呈幂律，少数节点很重要）。通过指数分布分位点把 $[,\epsilon_b,\epsilon_e,]$ 切成 $(\epsilon_b,\epsilon_1],(\epsilon_1,\epsilon_2],\dots,(\epsilon_{M-2},\epsilon_e]$，切分边界用式(7)(8)的分位数关系确定；重要节点→分到<strong>更小的 $\epsilon$</strong>（更强保护/更大噪声），不太重要的节点→更大的 $\epsilon$（更少噪声）。每个节点最终<strong>从其子区间随机采样</strong>得到个性化预算 $\epsilon_i$。</p>
-<p>各节点用自己的 $\epsilon_i$ 做拉普拉斯机制：$\hat X_i=f(X_i)+\mathrm{Lap}(\Delta f/\epsilon_i)$（式(3)、(9)），并用<strong>随机响应</strong>扰动标签（式(12)），实现特征+标签双重保护。</p>
-<p>因不同邻居被加的噪声强度不同，直接平均会放大高噪声邻居的负面影响。论文据“<strong>越重要→预算越小→噪声越大</strong>”的链条，给重要邻居更小权重：
-</p>
-$$
-W_{u,v}=1+\frac{1}{D_u}-\frac{AIE_v}{\sum_{i\in Ner_u}AIE_{u,i}+AIE_u},
-$$<p>
-再做加权聚合（式(10)(11)）。这样能<strong>抑制差异化DP噪声</strong>对表示学习的影响。</p>
-<blockquote>
-<p><strong>TDP-GNN 通过拓扑结构识别节点重要性，划分为多个隐私敏感度等级，映射到指数分布的预算区间并采样个性化预算，再结合加权聚合抑制噪声。</strong></p>
-</blockquote>
-<h2 id="上下文多臂赌博机cmab算法分配区间">上下文多臂赌博机（CMAB）算法分配（区间）
-</h2><blockquote>
-<p>Zhang X, Zhou Y, Hu M, et al. BGTplanner: Maximizing Training Accuracy for Differentially Private Federated Recommenders via Strategic Privacy Budget Allocation[J]. IEEE Transactions on Services Computing, 2025.</p>
-</blockquote>
-<ul>
-<li>
-<p>步骤 1：生成奖励的预测</p>
-<ul>
-<li>对于每个动作 $a_t$ 和上下文 $X_t$，BGTplanner使用高斯过程回归模型预测奖励 $r_t$：
-$$
-    \mu(z_t) = \text{GPR}(a_t, X_t)
-    $$</li>
-</ul>
-</li>
-<li>
-<p>步骤 2：计算动作的评分</p>
-<ul>
-<li>根据预测的奖励 $\mu(z_t)$，为每个可能的动作（隐私预算分配方案）计算一个<strong>评分</strong> $\beta_t(a)$，公式如下：</li>
-</ul>
-</li>
-</ul>
-$$
-\beta_t(a) = \mu(z_t) - \langle \epsilon_{\text{total}} - \epsilon_t, \lambda_t \rangle
-$$<p>​	其中，$\lambda_t$ 是用于<strong>长期隐私预算约束</strong>的拉格朗日乘子，确保在整个训练过程中不会超出总预算。</p>
-<ul>
-<li>步骤 3：选择最优的隐私预算分配方案
-<ul>
-<li>$\gamma$ 是<strong>探索和利用的权衡参数</strong>，控制着系统是否偏向于选择当前最优的动作（利用）或探索其他可能的动作。</li>
-<li>$A$ 是<strong>动作空间</strong>的大小，表示可能的隐私预算分配方案的数量。</li>
-</ul>
-</li>
-<li>步骤 4：更新隐私预算消耗
-<ul>
-<li>在每轮训练之后，BGTplanner通过<strong>隐私预算消耗函数</strong>来计算实际消耗的隐私预算 $\epsilon_t$，并更新剩余预算。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>假设我们有如下参数：</p>
-<ul>
-<li><strong>总隐私预算</strong> $\epsilon_{\text{total}} = 10$</li>
-<li><strong>隐私预算区间</strong>：$\epsilon_{\text{min}} = 1, \epsilon_{\text{max}} = 5$</li>
-<li>每轮的隐私预算分配动作是从区间 $[1, 5]$ 中选择的。</li>
-</ul>
-<p>在某个训练回合中，BGTplanner预测奖励为：</p>
-</blockquote>
-$$
-\mu(z_t) = 0.8 \quad (\text{基于历史信息和上下文的奖励预测})
-$$<blockquote>
-<p>接着，BGTplanner计算所有可能动作的评分，并选择评分最高的动作。例如，假设动作 $a_1$ 得分为 0.9，动作 $a_2$ 得分为 0.7，最终选择 $a_1$ 作为隐私预算分配方案。</p>
-<p><strong>BGTplanner 每轮都用 CMAB 从一组预算选项中，智能选一个最合适的隐私预算来用</strong></p>
-</blockquote>
-<h2 id="探讨隐私预算的推荐值">探讨隐私预算的推荐值
-</h2><blockquote>
-<p>Du W, Ma X, Dong W, et al. Calibrating privacy budgets for locally private graph neural networks[C]//2021 International Conference on Networking and Network Applications (NaNA). IEEE, 2021: 23-29.</p>
-</blockquote>
-<p>采用了 <strong>Multi-bit LDP Mechanism</strong> (LPGNN的方法)对用户特征进行扰动:</p>
-<p><strong>输入：</strong></p>
-<ul>
-<li>用户特征向量$ x∈[α,β]^d$</li>
-<li>隐私预算$\epsilon$</li>
-<li>控制参数 <em>m</em>（每次扰动的特征维度数）</li>
-</ul>
-<p><strong>输出：</strong></p>
-<ul>
-<li>扰动后的特征向量 $ x∈{-1,0,1}^d$</li>
-</ul>
-<p>通过<strong>链路预测准确率</strong>和加入属性推断攻击后的<strong>F1-score值</strong>推荐隐私预算值</p>
-<div class="table-wrapper"><table>
+<hr>
+<h2 id="核心挑战">核心挑战
+</h2><div class="table-wrapper"><table>
   <thead>
       <tr>
-          <th style="text-align: left">项目</th>
-          <th style="text-align: left">内容</th>
+          <th>挑战</th>
+          <th>描述</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">目标</td>
-          <td style="text-align: left">在 LDP 保护的 GNN 中合理选择隐私预算 ε</td>
+          <td><strong>① 自表示不足</strong></td>
+          <td>GNN 过度依赖邻域聚合，低度节点失去邻域后性能崩塌至 MLP 水平</td>
       </tr>
       <tr>
-          <td style="text-align: left">方法</td>
-          <td style="text-align: left">利用属性推断攻击效果作为隐私度量，结合链路预测准确率评估效用</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">隐私机制</td>
-          <td style="text-align: left">Multi-bit LDP 机制，用户本地扰动特征，服务器无偏重构</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">推荐 ε 值</td>
-          <td style="text-align: left">0.5 ~ 1（视具体业务对隐私和效用的需求）</td>
+          <td><strong>② 低 NHR</strong></td>
+          <td>低度节点邻居中同类节点比例极低，违反 GNN 的同质性假设</td>
       </tr>
   </tbody>
 </table></div>
-<h2 id="基于遗传算法ga的隐私预算分配">基于遗传算法（GA）的隐私预算分配
-</h2><blockquote>
-<p>Li Y, Song X, Tu Y, et al. GAPBAS: Genetic algorithm-based privacy budget allocation strategy in differential privacy K-means clustering algorithm[J]. Computers &amp; Security, 2024, 139: 103697.</p>
-</blockquote>
-<p>通过分析噪声对质心的影响，推导出 <strong>最小隐私预算$ε_m$</strong>：
+<hr>
+<h2 id="整体框架">整体框架
+</h2><p>
+
+
+
+<div class="post-img-view">
+	<a data-fancybox="gallery" href="https://s2.loli.net/2025/10/29/9KjLt1TpcWm3Ada.png">
+		<img src="https://s2.loli.net/2025/10/29/9KjLt1TpcWm3Ada.png" alt="image-20251029164240677"  />
+	</a>
+</div>
 </p>
-$$
-ε_m=(\frac{200k^3d+(1+d)^2}{N^2}(1+ρ^2))^{1/2}
-$$<p>
-其中：</p>
+<h3 id="流程">流程
+</h3><ol>
+<li><strong>分解 GNN</strong> 将 GNN 分成 <strong>ST（自变换，MLP）</strong> 和 <strong>NT（邻域变换）</strong> 两部分。</li>
+<li><strong>自蒸馏训练</strong>
 <ul>
-<li><em>k</em>：聚类数；<em>d</em>：数据维度；<em>N</em>：样本数量；<em>ρ</em>：噪声相关系数（通常取 0.225）；</li>
-</ul>
-<blockquote>
-<p>每轮预算必须满足：<em>$ε_t$</em>≥<em>$ε_m$</em>，否则噪声过大导致质心不收敛。</p>
-</blockquote>
-<ul>
-<li>每个个体是一个长度为 $T$ 的浮点数组：${ε_1,ε_2,&hellip;,ε_T}$</li>
-</ul>
-<blockquote>
-<p><strong>GAPBAS 将每轮隐私预算组合成序列，作为遗传算法的个体，在满足总预算和最小预算约束下，优化出使聚类效果（NICV）最优的预算分配策略。</strong></p>
-</blockquote>
-<h2 id="基于隐私安全等级privacy-security-level-psl">基于隐私安全等级（Privacy Security Level, PSL）
-</h2><blockquote>
-<p>Shen Z, He S, Wang H, et al. A differential privacy budget allocation method combining privacy security level[J]. Journal of Communications and Information Networks, 2023, 8(1): 90-98.</p>
-</blockquote>
-<p>提出 <strong>PSL 方法</strong>：为每个位置分配一个“隐私安全等级”，并据此动态分配隐私预算 $ε$，实现 <strong>个性化、拓扑感知的隐私保护</strong>。</p>
-<p>步骤：</p>
-<ol>
-<li>
-<p>使用 <strong>P-series（p-级数）</strong> 为初始敏感位置分配隐私预算</p>
-<ul>
-<li>
-<p>使用 <strong>P-series</strong> 为初始敏感位置分配预算：
-</p>
-$$
-     \varepsilon_{m} = \frac{\varepsilon}{\zeta(p)} \times \frac{1}{m^{p}}, \quad m \in \mathbb{N}^{+}, \quad p > 1
-     $$<ul>
-<li>$\varepsilon$：总隐私预算；</li>
-<li>$\zeta(p)$：P级数收敛值（如 p=2 时，$\zeta(2)= π²/6$；</li>
-<li><em>m</em>：敏感位置编号（按重要性排序）；</li>
-<li>结果：重要位置（m 小）获得更大预算（更小噪声）</li>
+<li><strong>教师模型</strong>：完整 GNN（ST + NT）</li>
+<li><strong>学生模型</strong>：仅 ST（退化为 MLP）</li>
+<li>用教师软标签 + 真实标签监督学生，优化 ST 学习“邻域平移”。</li>
 </ul>
 </li>
-</ul>
-</li>
-<li>
-<p>根据 <strong>距离与节点度</strong> 为敏感点的邻居分配预算，并支持 <strong>动态时间调整</strong></p>
+<li><strong>图补全（Graph Completion）</strong>
 <ul>
-<li>
-<p>PSL定义：
-</p>
-$$
-     \mathrm{PSL}(k_{m}) = \lambda \times \varepsilon_{m} = \lambda \times \frac{\varepsilon}{\zeta(p)} \times m^{p}
-     $$<ul>
-<li>PSL 与预算$\varepsilon$ 成反比；</li>
-<li>$\lambda$ 为调节参数;</li>
-<li>用于衡量位置的“隐私敏感度”。</li>
+<li>对低度节点 $ v $，用自蒸馏输出 $ p(v) $ 预测同类邻居</li>
+<li>建模为多标签任务：正样本=当前邻居，负样本=低相似度节点</li>
+<li>选前 $ k $ 个高概率同类节点，添加新边，构建新图 $ G&rsquo; $。</li>
 </ul>
 </li>
+<li><strong>训练 Grace-GNN</strong> 在补全后的图 $ G&rsquo; $ 上，用增强的 ST + NT 训练最终 GNN。</li>
+<li><strong>推理阶段：标签传播</strong>
+<ul>
+<li>对低度节点，用 $ p(v) $ 选前 $ k $ 个邻居</li>
+<li>构建<strong>有向边</strong>（高置信 → 低度）</li>
+<li><strong>单跳传播</strong>： $\hat{p}(v) = (1-\lambda) p(v) + \lambda \sum_{u \to v} p(u)$</li>
+<li>输出最终预测。</li>
 </ul>
-</li>
-<li>
-<p>将 PSL 映射为隐私预算$ε$，满足 $\epsilon × PSL = \gamma$（$\gamma$ 为常数）</p>
 </li>
 </ol>
 <blockquote>
-<p>假设：</p>
-<ul>
-<li>敏感节点 $k_1$ 的 PSL = 0.6079；</li>
-<li>邻居 A 距离为 1，邻居 B 距离为 2；</li>
-<li>NPS = {A, B}；</li>
-</ul>
-<p>则：
-</p>
-$$
-\mathrm{PSL}_{A} = \frac{1/1}{(1/1 + 1/2)} \times 0.6079 = 0.4053,
-\\
-\mathrm{PSL}_{B} = \frac{1/2}{(1/1 + 1/2)} \times 0.6079 = 0.2026
-$$<p>
-再映射回预算：
-</p>
-$$
-\epsilon_{A} = \frac{\gamma}{\mathrm{PSL}_{A}} = \frac{0.5}{0.4053} \approx 1.23
-, \\
-\epsilon_{B} = \frac{\gamma}{\mathrm{PSL}_{B}} = \frac{0.5}{0.2026} \approx 2.47
-$$<p>
-<strong>PSL 方法通过 P-series 为敏感位置分配递减预算，再结合距离与节点度为邻居分配个性化预算，并支持时间动态调整，实现“重要位置多留数据，敏感位置多加噪声”的精细化隐私保护。</strong></p>
+<p><strong>核心特点</strong>：<strong>自蒸馏增强自表示</strong> + <strong>精准补全提升 NHR</strong> + <strong>单跳传播防误传</strong>，实现低度节点性能大幅提升，整体无损。</p>
 </blockquote>
+<hr>
+<h2 id="核心模块">核心模块
+</h2><h3 id="自蒸馏graph-self-distillation">自蒸馏（Graph Self-Distillation）
+</h3><h4 id="思路">思路
+</h4><p>将 GNN 分解为两部分：</p>
+<ul>
+<li><strong>ST（Self-Transformation）</strong>：节点自身特征变换（MLP）</li>
+<li><strong>NT（Neighborhood Transformation）</strong>：邻居信息聚合</li>
+</ul>
+<blockquote>
+<p>目标：将图依赖性<strong>从 NT 迁移到 ST</strong>，使 ST 学习到“邻域平移”</p>
+</blockquote>
+<h4 id="实现">实现
+</h4><ol>
+<li><strong>教师模型</strong>：完整 GNN（含 ST + NT）</li>
+<li><strong>学生模型</strong>：仅 ST 部分（退化为 MLP）</li>
+<li><strong>训练流程</strong>：
+<ul>
+<li>输入节点特征 → 教师模型 → 软标签 $ p_t(v) $</li>
+<li>输入相同特征 → 学生模型 → 输出 $ p_s(v) $</li>
+<li>损失： $\mathcal{L}_{KD} = \sum_v \left[ \alpha \cdot KL(p_t(v) | p_s(v)) + (1-\alpha) \cdot CE(p_s(v), y_v) \right]$</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>收敛后，<strong>ST 隐式编码了邻域信息</strong>，增强低度节点自表示</p>
+</blockquote>
+<hr>
+<h3 id="图补全graph-completion">图补全（Graph Completion）
+</h3><h4 id="目标">目标
+</h4><p>为低度节点预测<strong>同类潜在邻居</strong>，提升 NHR</p>
+<h4 id="建模为多标签预测任务">建模为多标签预测任务
+</h4><ul>
+<li><strong>正样本</strong>：当前邻居 $ \mathcal{N}(v) $</li>
+<li><strong>候选负样本</strong>：其他节点</li>
+<li><strong>预测</strong>：使用自蒸馏输出的软标签 $ p(v) $</li>
+<li><strong>选择策略</strong>：
+<ol>
+<li>取 $ p(v) $ 中前 2 大概率类别</li>
+<li>归一化得到权重</li>
+<li>负样本：与 $ v $ 余弦相似度 &lt; $ \eta $</li>
+</ol>
+</li>
+<li><strong>最终标签</strong>： $y_v^{\text{multi}} = \text{softmax}\left( \sum_{u \in \mathcal{N}(v)} p(u) \right)$</li>
+</ul>
+<blockquote>
+<p>仅连接<strong>最可能同类的节点</strong>，避免噪声</p>
+</blockquote>
+<hr>
+<h3 id="标签传播label-propagation">标签传播（Label Propagation）
+</h3><h4 id="作用">作用
+</h4><p>防止图补全中的误分类传播</p>
+<h4 id="预测阶段流程">预测阶段流程
+</h4><ol>
+<li>根据 $ p(v) $ 选前 $ k $ 个潜在邻居</li>
+<li>构建有向边：$ u \to v $（$ u $ 是高置信邻居）</li>
+<li>单跳传播： $\hat{p}(v) = (1 - \lambda) p(v) + \lambda \sum_{u \in \mathcal{N}&rsquo;(v)} p(u)$ 其中 $ \mathcal{N}&rsquo;(v) $ 为新图中的邻居</li>
+</ol>
+<blockquote>
+<p>信息<strong>单向流动</strong>：从可靠节点 → 低度节点</p>
+</blockquote>
+<hr>
+<h2 id="符号表">符号表
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>符号</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$ G = (V, E, X, Y) $</td>
+          <td>原始图</td>
+      </tr>
+      <tr>
+          <td>$ \deg(v) $</td>
+          <td>节点 $ v $ 的度数</td>
+      </tr>
+      <tr>
+          <td>$ \text{NHR}(v) $</td>
+          <td>邻域同质性比率 = 同类邻居数 / 总邻居数</td>
+      </tr>
+      <tr>
+          <td>$ \text{ST}(\cdot), \text{NT}(\cdot) $</td>
+          <td>自变换、邻域变换</td>
+      </tr>
+      <tr>
+          <td>$ p_t(v), p_s(v) $</td>
+          <td>教师/学生模型输出概率</td>
+      </tr>
+      <tr>
+          <td>$ \mathcal{L}_{KD} $</td>
+          <td>知识蒸馏损失</td>
+      </tr>
+      <tr>
+          <td>$ \eta $</td>
+          <td>负样本相似度阈值</td>
+      </tr>
+      <tr>
+          <td>$ k $</td>
+          <td>预测邻居数量</td>
+      </tr>
+      <tr>
+          <td>$ G&rsquo; $</td>
+          <td>补全后新图</td>
+      </tr>
+      <tr>
+          <td>$ \mathcal{N}&rsquo;(v) $</td>
+          <td>新图中 $ v $ 的邻居集</td>
+      </tr>
+  </tbody>
+</table></div>
 
 </section>
 
@@ -739,7 +722,7 @@ $$<p>
 
 
         <span>
-            最后更新于 2025-10-25
+            最后更新于 2025-10-29
         </span>
     </section>
 
@@ -799,12 +782,25 @@ $$<p>
             
                 
 <article class="">
-    <a href="/Kuka-hugo/p/privacylpgnn/">
+    <a href="/Kuka-hugo/p/privacy-lpgnnlocally-private-graph-neural-networks/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">【Privacy】LPGNN</h2>
+            <h2 class="article-title">[Privacy] LPGNN：Locally private graph neural networks</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/Kuka-hugo/p/privacy-%E8%87%AA%E9%80%82%E5%BA%94%E9%9A%90%E7%A7%81%E9%A2%84%E7%AE%97%E5%88%86%E9%85%8D/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Privacy] 自适应隐私预算分配</h2>
         </div>
     </a>
 </article>

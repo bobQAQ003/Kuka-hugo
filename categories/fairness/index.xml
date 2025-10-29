@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Fairness on KukaDam</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/fairness/</link>
+        <description>Recent content in Fairness on KukaDam</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>KukaDam</copyright>
+        <lastBuildDate>Wed, 29 Oct 2025 17:24:20 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/fairness/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[Fairness] Grace：Graph self-distillation and completion to mitigate degree-related biases</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/</link>
+        <pubDate>Wed, 29 Oct 2025 16:32:18 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/p/fairness-gracegraph-self-distillation-and-completion-to-mitigate-degree-related-biases/</guid>
+        <description>&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;论文来自：&lt;/p&gt;
+&lt;p&gt;Xu H, Xiang L, Huang F, et al. Grace: Graph self-distillation and completion to mitigate degree-related biases[C]//Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023: 2813-2824.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;摘要&#34;&gt;摘要
+&lt;/h2&gt;&lt;p&gt;真实世界图普遍呈现&lt;strong&gt;长尾度分布&lt;/strong&gt;（long-tail degree distribution），大量节点为&lt;strong&gt;低度节点&lt;/strong&gt;（low-degree nodes）。尽管 GNN 在节点分类任务上表现出色，但其性能严重依赖丰富连接，&lt;strong&gt;对低度节点表示不足&lt;/strong&gt;，导致显著的&lt;strong&gt;度相关偏差（degree-related bias）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;本文提出 &lt;strong&gt;Grace&lt;/strong&gt;，通过以下两大机制缓解该问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;自蒸馏（Graph Self-Distillation）&lt;/strong&gt;：增强低度节点的&lt;strong&gt;自表示能力（self-representation）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;图补全（Graph Completion）&lt;/strong&gt;：提升低度节点的&lt;strong&gt;邻域同质性比率（Neighborhood Homophily Ratio, NHR）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;结合 &lt;strong&gt;标签传播（Label Propagation）&lt;/strong&gt; 防止错误传播。实验表明，Grace 在平衡整体性能与低度节点准确率方面显著优于现有方法。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;问题背景与动机&#34;&gt;问题背景与动机
+&lt;/h2&gt;&lt;h3 id=&#34;图1真实图的度分布与性能偏差&#34;&gt;图1：真实图的度分布与性能偏差
+&lt;/h3&gt;&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/29/w6Gzyj312XMhgCK.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/29/w6Gzyj312XMhgCK.png&#34; alt=&#34;image-20251029164055547&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;核心挑战&#34;&gt;核心挑战
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;挑战&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;① 自表示不足&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;GNN 过度依赖邻域聚合，低度节点失去邻域后性能崩塌至 MLP 水平&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;② 低 NHR&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;低度节点邻居中同类节点比例极低，违反 GNN 的同质性假设&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;整体框架&#34;&gt;整体框架
+&lt;/h2&gt;&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/29/9KjLt1TpcWm3Ada.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/29/9KjLt1TpcWm3Ada.png&#34; alt=&#34;image-20251029164240677&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h3 id=&#34;流程&#34;&gt;流程
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;分解 GNN&lt;/strong&gt; 将 GNN 分成 &lt;strong&gt;ST（自变换，MLP）&lt;/strong&gt; 和 &lt;strong&gt;NT（邻域变换）&lt;/strong&gt; 两部分。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自蒸馏训练&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;教师模型&lt;/strong&gt;：完整 GNN（ST + NT）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;学生模型&lt;/strong&gt;：仅 ST（退化为 MLP）&lt;/li&gt;
+&lt;li&gt;用教师软标签 + 真实标签监督学生，优化 ST 学习“邻域平移”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;图补全（Graph Completion）&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;对低度节点 $ v $，用自蒸馏输出 $ p(v) $ 预测同类邻居&lt;/li&gt;
+&lt;li&gt;建模为多标签任务：正样本=当前邻居，负样本=低相似度节点&lt;/li&gt;
+&lt;li&gt;选前 $ k $ 个高概率同类节点，添加新边，构建新图 $ G&amp;rsquo; $。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;训练 Grace-GNN&lt;/strong&gt; 在补全后的图 $ G&amp;rsquo; $ 上，用增强的 ST + NT 训练最终 GNN。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推理阶段：标签传播&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;对低度节点，用 $ p(v) $ 选前 $ k $ 个邻居&lt;/li&gt;
+&lt;li&gt;构建&lt;strong&gt;有向边&lt;/strong&gt;（高置信 → 低度）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单跳传播&lt;/strong&gt;： $\hat{p}(v) = (1-\lambda) p(v) + \lambda \sum_{u \to v} p(u)$&lt;/li&gt;
+&lt;li&gt;输出最终预测。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;核心特点&lt;/strong&gt;：&lt;strong&gt;自蒸馏增强自表示&lt;/strong&gt; + &lt;strong&gt;精准补全提升 NHR&lt;/strong&gt; + &lt;strong&gt;单跳传播防误传&lt;/strong&gt;，实现低度节点性能大幅提升，整体无损。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;核心模块&#34;&gt;核心模块
+&lt;/h2&gt;&lt;h3 id=&#34;自蒸馏graph-self-distillation&#34;&gt;自蒸馏（Graph Self-Distillation）
+&lt;/h3&gt;&lt;h4 id=&#34;思路&#34;&gt;思路
+&lt;/h4&gt;&lt;p&gt;将 GNN 分解为两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ST（Self-Transformation）&lt;/strong&gt;：节点自身特征变换（MLP）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NT（Neighborhood Transformation）&lt;/strong&gt;：邻居信息聚合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目标：将图依赖性&lt;strong&gt;从 NT 迁移到 ST&lt;/strong&gt;，使 ST 学习到“邻域平移”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;实现&#34;&gt;实现
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;教师模型&lt;/strong&gt;：完整 GNN（含 ST + NT）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;学生模型&lt;/strong&gt;：仅 ST 部分（退化为 MLP）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;训练流程&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;输入节点特征 → 教师模型 → 软标签 $ p_t(v) $&lt;/li&gt;
+&lt;li&gt;输入相同特征 → 学生模型 → 输出 $ p_s(v) $&lt;/li&gt;
+&lt;li&gt;损失： $\mathcal{L}_{KD} = \sum_v \left[ \alpha \cdot KL(p_t(v) | p_s(v)) + (1-\alpha) \cdot CE(p_s(v), y_v) \right]$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;收敛后，&lt;strong&gt;ST 隐式编码了邻域信息&lt;/strong&gt;，增强低度节点自表示&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;图补全graph-completion&#34;&gt;图补全（Graph Completion）
+&lt;/h3&gt;&lt;h4 id=&#34;目标&#34;&gt;目标
+&lt;/h4&gt;&lt;p&gt;为低度节点预测&lt;strong&gt;同类潜在邻居&lt;/strong&gt;，提升 NHR&lt;/p&gt;
+&lt;h4 id=&#34;建模为多标签预测任务&#34;&gt;建模为多标签预测任务
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;正样本&lt;/strong&gt;：当前邻居 $ \mathcal{N}(v) $&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;候选负样本&lt;/strong&gt;：其他节点&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;预测&lt;/strong&gt;：使用自蒸馏输出的软标签 $ p(v) $&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;选择策略&lt;/strong&gt;：
+&lt;ol&gt;
+&lt;li&gt;取 $ p(v) $ 中前 2 大概率类别&lt;/li&gt;
+&lt;li&gt;归一化得到权重&lt;/li&gt;
+&lt;li&gt;负样本：与 $ v $ 余弦相似度 &amp;lt; $ \eta $&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;最终标签&lt;/strong&gt;： $y_v^{\text{multi}} = \text{softmax}\left( \sum_{u \in \mathcal{N}(v)} p(u) \right)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;仅连接&lt;strong&gt;最可能同类的节点&lt;/strong&gt;，避免噪声&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;标签传播label-propagation&#34;&gt;标签传播（Label Propagation）
+&lt;/h3&gt;&lt;h4 id=&#34;作用&#34;&gt;作用
+&lt;/h4&gt;&lt;p&gt;防止图补全中的误分类传播&lt;/p&gt;
+&lt;h4 id=&#34;预测阶段流程&#34;&gt;预测阶段流程
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;根据 $ p(v) $ 选前 $ k $ 个潜在邻居&lt;/li&gt;
+&lt;li&gt;构建有向边：$ u \to v $（$ u $ 是高置信邻居）&lt;/li&gt;
+&lt;li&gt;单跳传播： $\hat{p}(v) = (1 - \lambda) p(v) + \lambda \sum_{u \in \mathcal{N}&amp;rsquo;(v)} p(u)$ 其中 $ \mathcal{N}&amp;rsquo;(v) $ 为新图中的邻居&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;信息&lt;strong&gt;单向流动&lt;/strong&gt;：从可靠节点 → 低度节点&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;符号表&#34;&gt;符号表
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;符号&lt;/th&gt;
+          &lt;th&gt;含义&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ G = (V, E, X, Y) $&lt;/td&gt;
+          &lt;td&gt;原始图&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \deg(v) $&lt;/td&gt;
+          &lt;td&gt;节点 $ v $ 的度数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \text{NHR}(v) $&lt;/td&gt;
+          &lt;td&gt;邻域同质性比率 = 同类邻居数 / 总邻居数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \text{ST}(\cdot), \text{NT}(\cdot) $&lt;/td&gt;
+          &lt;td&gt;自变换、邻域变换&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ p_t(v), p_s(v) $&lt;/td&gt;
+          &lt;td&gt;教师/学生模型输出概率&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \mathcal{L}_{KD} $&lt;/td&gt;
+          &lt;td&gt;知识蒸馏损失&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \eta $&lt;/td&gt;
+          &lt;td&gt;负样本相似度阈值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ k $&lt;/td&gt;
+          &lt;td&gt;预测邻居数量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ G&amp;rsquo; $&lt;/td&gt;
+          &lt;td&gt;补全后新图&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;$ \mathcal{N}&amp;rsquo;(v) $&lt;/td&gt;
+          &lt;td&gt;新图中 $ v $ 的邻居集&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
