@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDam</copyright>
-        <lastBuildDate>Wed, 29 Oct 2025 17:24:20 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 30 Oct 2025 20:32:35 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Hugo</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/hugo/</link>
+        <pubDate>Thu, 30 Oct 2025 20:25:25 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Vercel</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/vercel/</link>
+        <pubDate>Thu, 30 Oct 2025 20:25:25 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/vercel/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Fairness</title>
         <link>https://bobqaq003.github.io/Kuka-hugo/categories/fairness/</link>
         <pubDate>Wed, 29 Oct 2025 16:32:18 +0800</pubDate>
@@ -21,22 +37,6 @@
         <pubDate>Wed, 29 Oct 2025 16:32:18 +0800</pubDate>
         
         <guid>https://bobqaq003.github.io/Kuka-hugo/categories/%E7%AC%94%E8%AE%B0/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Hugo</title>
-        <link>https://bobqaq003.github.io/Kuka-hugo/categories/hugo/</link>
-        <pubDate>Tue, 28 Oct 2025 17:27:50 +0800</pubDate>
-        
-        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/hugo/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>技术</title>
-        <link>https://bobqaq003.github.io/Kuka-hugo/categories/%E6%8A%80%E6%9C%AF/</link>
-        <pubDate>Tue, 28 Oct 2025 17:27:50 +0800</pubDate>
-        
-        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/%E6%8A%80%E6%9C%AF/</guid>
         <description></description>
         </item>
         <item>

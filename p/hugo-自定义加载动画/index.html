@@ -10,7 +10,7 @@
 <meta property='og:description' content=" 引入这个动画是因为加载自定义字体后，因为字体太大导致网站总是先显示默认字体，过一会再显示自定义字体，强迫症犯了。所以希望等加载后再展示网站\n牛顿摆动画 将以下代码复制进layouts/partials/head/custom.html(文件不存在则自行创建) 1&lt;div class=&#34;loading&#34;&gt; 2 &lt;!-- html内容 --&gt; 3 &lt;div class=&#34;newtons-cradle&#34;&gt; 4 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 5 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 6 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 7 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 8 &lt;/div&gt; 9&lt;/div&gt; 10 11&lt;style&gt; 12 .loading { 13 position: fixed; 14 display: flex; 15 justify-content: center; 16 align-items: center; 17 top: 0; 18 left: 0; 19 width: 100%; 20 height: 100%; 21 z-index: 99; 22 background-color: #f5f5fa; 23 } 24\t25 /* css内容 */ 26 27 /* From Uiverse.io by dovatgabriel */ 28 .newtons-cradle { 29 --uib-size: 50px; 30 --uib-speed: 1.2s; 31 --uib-color: #474554; 32 position: relative; 33 display: flex; 34 align-items: center; 35 justify-content: center; 36 width: var(--uib-size); 37 height: var(--uib-size); 38 } 39 40 .newtons-cradle__dot { 41 position: relative; 42 display: flex; 43 align-items: center; 44 height: 100%; 45 width: 25%; 46 transform-origin: center top; 47 } 48 49 .newtons-cradle__dot::after { 50 content: &#39;&#39;; 51 display: block; 52 width: 100%; 53 height: 25%; 54 border-radius: 50%; 55 background-color: var(--uib-color); 56 } 57 58 .newtons-cradle__dot:first-child { 59 animation: swing var(--uib-speed) linear infinite; 60 } 61 62 .newtons-cradle__dot:last-child { 63 animation: swing2 var(--uib-speed) linear infinite; 64 } 65 66 @keyframes swing { 67 0% { 68 transform: rotate(0deg); 69 animation-timing-function: ease-out; 70 } 71 72 25% { 73 transform: rotate(70deg); 74 animation-timing-function: ease-in; 75 } 76 77 50% { 78 transform: rotate(0deg); 79 animation-timing-function: linear; 80 } 81 } 82 83 @keyframes swing2 { 84 0% { 85 transform: rotate(0deg); 86 animation-timing-function: linear; 87 } 88 89 50% { 90 transform: rotate(0deg); 91 animation-timing-function: ease-out; 92 } 93 94 75% { 95 transform: rotate(-70deg); 96 animation-timing-function: ease-in; 97 } 98 } 99 100 .animated-stop { 101 animation-play-state: paused !important; 102 } 103 104 .scaleAndFadeout { 105 animation: scaleAndFadeOut 1.5s forwards; 106 } 107 108 /** 放大1.5倍，并渐变到透明 */ 109 @keyframes scaleAndFadeOut { 110 0% { 111 transform: scale(1); 112 opacity: 1; 113 } 114 100% { 115 transform: scale(1.5); 116 opacity: 0; 117 } 118 } 119 120&lt;/style&gt; 121 122&lt;script&gt; 123 // 首次加载：等资源完 → 播放动画 → 淡出 124 window.addEventListener(&#39;load&#39;, () =&gt; { 125 const loading = document.querySelector(&#39;.loading&#39;); 126 if (!loading) return; 127 128 setTimeout(() =&gt; loading.classList.add(&#39;scaleAndFadeout&#39;), 600); 129 setTimeout(() =&gt; loading.style.display = &#39;none&#39;, 2000); 130 }); 131 132 // PJAX 切换：直接隐藏 133 document.addEventListener(&#39;pjax:complete&#39;, () =&gt; { 134 const loading = document.querySelector(&#39;.loading&#39;); 135 if (loading) loading.style.display = &#39;none&#39;; 136 }); 137&lt;/script&gt; 这边设置的是第一次进入界面和手动刷新时会加载动画\n">
 <meta property='og:url' content='https://bobqaq003.github.io/Kuka-hugo/p/hugo-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/'>
 <meta property='og:site_name' content='KukaDam'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-28T17:27:50&#43;08:00'/><meta property='article:modified_time' content='2025-10-29T17:24:20&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-28T17:27:50&#43;08:00'/><meta property='article:modified_time' content='2025-10-30T20:32:35&#43;08:00'/>
 <meta name="twitter:title" content="[Hugo] 自定义加载动画">
 <meta name="twitter:description" content=" 引入这个动画是因为加载自定义字体后，因为字体太大导致网站总是先显示默认字体，过一会再显示自定义字体，强迫症犯了。所以希望等加载后再展示网站\n牛顿摆动画 将以下代码复制进layouts/partials/head/custom.html(文件不存在则自行创建) 1&lt;div class=&#34;loading&#34;&gt; 2 &lt;!-- html内容 --&gt; 3 &lt;div class=&#34;newtons-cradle&#34;&gt; 4 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 5 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 6 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 7 &lt;div class=&#34;newtons-cradle__dot&#34;&gt;&lt;/div&gt; 8 &lt;/div&gt; 9&lt;/div&gt; 10 11&lt;style&gt; 12 .loading { 13 position: fixed; 14 display: flex; 15 justify-content: center; 16 align-items: center; 17 top: 0; 18 left: 0; 19 width: 100%; 20 height: 100%; 21 z-index: 99; 22 background-color: #f5f5fa; 23 } 24\t25 /* css内容 */ 26 27 /* From Uiverse.io by dovatgabriel */ 28 .newtons-cradle { 29 --uib-size: 50px; 30 --uib-speed: 1.2s; 31 --uib-color: #474554; 32 position: relative; 33 display: flex; 34 align-items: center; 35 justify-content: center; 36 width: var(--uib-size); 37 height: var(--uib-size); 38 } 39 40 .newtons-cradle__dot { 41 position: relative; 42 display: flex; 43 align-items: center; 44 height: 100%; 45 width: 25%; 46 transform-origin: center top; 47 } 48 49 .newtons-cradle__dot::after { 50 content: &#39;&#39;; 51 display: block; 52 width: 100%; 53 height: 25%; 54 border-radius: 50%; 55 background-color: var(--uib-color); 56 } 57 58 .newtons-cradle__dot:first-child { 59 animation: swing var(--uib-speed) linear infinite; 60 } 61 62 .newtons-cradle__dot:last-child { 63 animation: swing2 var(--uib-speed) linear infinite; 64 } 65 66 @keyframes swing { 67 0% { 68 transform: rotate(0deg); 69 animation-timing-function: ease-out; 70 } 71 72 25% { 73 transform: rotate(70deg); 74 animation-timing-function: ease-in; 75 } 76 77 50% { 78 transform: rotate(0deg); 79 animation-timing-function: linear; 80 } 81 } 82 83 @keyframes swing2 { 84 0% { 85 transform: rotate(0deg); 86 animation-timing-function: linear; 87 } 88 89 50% { 90 transform: rotate(0deg); 91 animation-timing-function: ease-out; 92 } 93 94 75% { 95 transform: rotate(-70deg); 96 animation-timing-function: ease-in; 97 } 98 } 99 100 .animated-stop { 101 animation-play-state: paused !important; 102 } 103 104 .scaleAndFadeout { 105 animation: scaleAndFadeOut 1.5s forwards; 106 } 107 108 /** 放大1.5倍，并渐变到透明 */ 109 @keyframes scaleAndFadeOut { 110 0% { 111 transform: scale(1); 112 opacity: 1; 113 } 114 100% { 115 transform: scale(1.5); 116 opacity: 0; 117 } 118 } 119 120&lt;/style&gt; 121 122&lt;script&gt; 123 // 首次加载：等资源完 → 播放动画 → 淡出 124 window.addEventListener(&#39;load&#39;, () =&gt; { 125 const loading = document.querySelector(&#39;.loading&#39;); 126 if (!loading) return; 127 128 setTimeout(() =&gt; loading.classList.add(&#39;scaleAndFadeout&#39;), 600); 129 setTimeout(() =&gt; loading.style.display = &#39;none&#39;, 2000); 130 }); 131 132 // PJAX 切换：直接隐藏 133 document.addEventListener(&#39;pjax:complete&#39;, () =&gt; { 134 const loading = document.querySelector(&#39;.loading&#39;); 135 if (loading) loading.style.display = &#39;none&#39;; 136 }); 137&lt;/script&gt; 这边设置的是第一次进入界面和手动刷新时会加载动画\n">
     <link rel="shortcut icon" href="/Kuka-hugo/favicon.ico" />
@@ -410,10 +410,6 @@
     
     <header class="article-category">
         
-            <a href="/Kuka-hugo/categories/%E6%8A%80%E6%9C%AF/" >
-                技术
-            </a>
-        
             <a href="/Kuka-hugo/categories/hugo/" >
                 Hugo
             </a>
@@ -755,7 +751,7 @@
 
 
         <span>
-            最后更新于 2025-10-29
+            最后更新于 2025-10-30
         </span>
     </section>
 
@@ -812,6 +808,19 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/Kuka-hugo/p/hugo-hugo%E9%83%A8%E7%BD%B2%E5%88%B0vercel/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Hugo] Hugo部署到Vercel</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">
