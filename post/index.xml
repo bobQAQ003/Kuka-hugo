@@ -7,7 +7,82 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDam</copyright>
-        <lastBuildDate>Thu, 30 Oct 2025 20:32:35 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 31 Oct 2025 11:13:40 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[Site] 将 Github Pages 个人博客录入搜索引擎（以 Bing 为例）</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/p/site-%E5%B0%86-github-pages-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BD%95%E5%85%A5%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BB%A5-bing-%E4%B8%BA%E4%BE%8B/</link>
+        <pubDate>Fri, 31 Oct 2025 11:04:25 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/p/site-%E5%B0%86-github-pages-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%BD%95%E5%85%A5%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E4%BB%A5-bing-%E4%B8%BA%E4%BE%8B/</guid>
+        <description>&lt;p&gt;参考 &lt;a class=&#34;link&#34; href=&#34;https://www.cnblogs.com/RainbowC0/p/18107581&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;将 Github Pages 个人博客录入搜索引擎（以 Bing 为例） - RainbowC0 - 博客园&lt;/a&gt; 即可，但是还是为自己留档稍微写写&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;p&gt;&lt;strong&gt;目前百度不再允许导入 &lt;code&gt;gitee.io&lt;/code&gt; 和 &lt;code&gt;github.io&lt;/code&gt; 等一级域名的网站&lt;/strong&gt;，理由是这些域名满额了&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;添加网站&#34;&gt;添加网站
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;打开&lt;a class=&#34;link&#34; href=&#34;https://www.bing.com/webmasters&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Bing Webmaster Tools&lt;/a&gt;，并登录。可以选择三种登录账号：Google、Microsoft、Facebook，这里我用 Microsoft 账号登录。&lt;/li&gt;
+&lt;li&gt;第一次登录会提升添加网站，如果已经通过GSC，可以用GSC。这里我手动添加，直接复制博客主页的URL粘贴即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/31/cUFvPm8TwO4h9id.webp&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/31/cUFvPm8TwO4h9id.webp&#34; alt=&#34;Add Site&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;验证网站&#34;&gt;验证网站
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;有三个验证方式：文件、标签、CNAME ，这里选择文件验证（第一个）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/31/XTzuvZCIrwcAHnS.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/31/XTzuvZCIrwcAHnS.png&#34; alt=&#34;image-20251031104347083&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;点击 &lt;code&gt;BingSiteAuth.xml&lt;/code&gt; 下载验证文件，然后上传到 Github Page 的根目录下，再更新 Github Page  部署，这样个人博客就被更新了，可以访问网站根目录下找到 &lt;code&gt;BingSiteAuth.xml&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;**注意：如果是用 Hugo 构建的网站，需要把验证文件放到项目的 &lt;code&gt;static&lt;/code&gt; 文件夹下，然后运行 &lt;code&gt;hugo&lt;/code&gt; 重新生成网页并上传。**然后点击“验证”即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;添加网站地图&#34;&gt;添加网站地图
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;点击网站地图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/31/qu1BgnxaLU7YdoD.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/31/qu1BgnxaLU7YdoD.png&#34; alt=&#34;image-20251031105136316&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用 Hugo 生成的博客网站会自带 sitemap.xml 文件，通常放在网站根目录下，点击“提交网站地图”，输入 &lt;code&gt;https://博客主页URL/sitemap.xml&lt;/code&gt;，然后提交。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/10/31/StNwAvkcb5Ta32Y.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/10/31/StNwAvkcb5Ta32Y.png&#34; alt=&#34;image-20251031105256484&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;验证成功&#34;&gt;验证成功
+&lt;/h2&gt;&lt;p&gt;最后可以用搜索引擎尝试搜一下自己的博客网站看看有没有结果，对于其他搜索引擎大体也是如此。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>[Hugo] Hugo部署到Vercel</title>
         <link>https://bobqaq003.github.io/Kuka-hugo/p/hugo-hugo%E9%83%A8%E7%BD%B2%E5%88%B0vercel/</link>
         <pubDate>Thu, 30 Oct 2025 20:25:25 +0800</pubDate>
