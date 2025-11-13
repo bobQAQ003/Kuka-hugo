@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDam</copyright>
-        <lastBuildDate>Fri, 31 Oct 2025 11:13:40 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 13 Nov 2025 16:21:41 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>SSH</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/ssh/</link>
+        <pubDate>Thu, 13 Nov 2025 16:18:41 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/ssh/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>VSCode</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/vscode/</link>
+        <pubDate>Thu, 13 Nov 2025 16:18:41 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/vscode/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Hugo</title>
         <link>https://bobqaq003.github.io/Kuka-hugo/categories/hugo/</link>
         <pubDate>Fri, 31 Oct 2025 11:04:25 +0800</pubDate>

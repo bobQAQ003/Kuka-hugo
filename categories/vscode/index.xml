@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>VSCode on KukaDam</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/vscode/</link>
+        <description>Recent content in VSCode on KukaDam</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>KukaDam</copyright>
+        <lastBuildDate>Thu, 13 Nov 2025 16:21:41 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/vscode/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[VSCode] VSCode连接远程服务器显示&#34;The remote host may not meet VS Code Server‘s prerequisites&#34;</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/p/vscode-vscode%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%98%BE%E7%A4%BAthe-remote-host-may-not-meet-vs-code-servers-prerequisites/</link>
+        <pubDate>Thu, 13 Nov 2025 16:18:41 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/p/vscode-vscode%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%98%BE%E7%A4%BAthe-remote-host-may-not-meet-vs-code-servers-prerequisites/</guid>
+        <description>&lt;h2 id=&#34;场景&#34;&gt;场景
+&lt;/h2&gt;&lt;p&gt;SSH连接AutoDL报错：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The remote host may not meet VS Code Server&amp;rsquo;s prerequisites for glibc and libstdc++ (The remote host does not meet the prerequisites for running VS Code  Server)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;原因：
+&lt;ul&gt;
+&lt;li&gt;之前是能连接上的，但隔了一段时间很久没用过VScode，以为是remote-SSH的问题，卸载重装也没用。&lt;/li&gt;
+&lt;li&gt;VS Code 从 1.99 版本（2025年3月） 开始，要求远程服务器的：
+&lt;ul&gt;
+&lt;li&gt;glibc ≥ 2.28（如 Ubuntu 20.04+、CentOS 8+）&lt;/li&gt;
+&lt;li&gt;libstdc++ 需包含 GLIBCXX_3.4.25 及以上符号版本，若服务器运行老旧系统（如 Ubuntu 18.04、CentOS 7），其默认库版本不满足要求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;参考博客，&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_37200100/article/details/147096011&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;解决Vscode连接服务器报错&lt;/a&gt; ，怀疑是Vscode自动更新的问题，尝试降版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;解决方案
+&lt;/h2&gt;&lt;h3 id=&#34;方案1降级&#34;&gt;方案1：降级
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;禁用Vscode自动更新，参考博客 &lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_37200100/article/details/147078692?spm=1011.2415.3001.5331&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;禁用Vscode自动更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载安装&lt;a class=&#34;link&#34; href=&#34;https://code.visualstudio.com/updates/v1_85&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Vscode1.85版本&lt;/a&gt;
+
+
+
+&lt;div class=&#34;post-img-view&#34;&gt;
+	&lt;a data-fancybox=&#34;gallery&#34; href=&#34;https://s2.loli.net/2025/11/13/TYQj13rDezaBy4m.png&#34;&gt;
+		&lt;img src=&#34;https://s2.loli.net/2025/11/13/TYQj13rDezaBy4m.png&#34; alt=&#34;image-20250916181212704&#34;  /&gt;
+	&lt;/a&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;安装前要退出正在运行的Vscode&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;如果出现需要选择安装目录的情况，一定要选择当前VSCode 软件的安装目录。&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;vscode小操作&#34;&gt;VSCode小操作
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;复制一行
+&lt;ul&gt;
+&lt;li&gt;命令太长，想直接复制一行，光标移动到那一行前，直接&lt;code&gt;ctrl+c&lt;/code&gt;就复制了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;shift+alt+↓&lt;/code&gt;自动把这一行内容复制到下一行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
