@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDam</copyright>
-        <lastBuildDate>Thu, 13 Nov 2025 16:21:41 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 28 Jan 2026 21:56:48 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Linux</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/linux/</link>
+        <pubDate>Wed, 28 Jan 2026 21:37:24 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/linux/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SadSevers</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/categories/sadsevers/</link>
+        <pubDate>Wed, 28 Jan 2026 21:37:24 +0800</pubDate>
+        
+        <guid>https://bobqaq003.github.io/Kuka-hugo/categories/sadsevers/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>SSH</title>
         <link>https://bobqaq003.github.io/Kuka-hugo/categories/ssh/</link>
         <pubDate>Thu, 13 Nov 2025 16:18:41 +0800</pubDate>
