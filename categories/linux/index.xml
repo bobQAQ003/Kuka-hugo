@@ -7,15 +7,101 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>KukaDam</copyright>
-        <lastBuildDate>Tue, 09 Jun 2026 23:05:24 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>[Linux] Ubuntu26.04lts美化日志</title>
-        <link>https://bobqaq003.github.io/Kuka-hugo/p/linux-ubuntu26.04lts%E7%BE%8E%E5%8C%96%E6%97%A5%E5%BF%97/</link>
+        <lastBuildDate>Wed, 10 Jun 2026 20:39:38 +0800</lastBuildDate><atom:link href="https://bobqaq003.github.io/Kuka-hugo/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>[Linux] Ubuntu26.04lts美化记录</title>
+        <link>https://bobqaq003.github.io/Kuka-hugo/p/linux-ubuntu26.04lts%E7%BE%8E%E5%8C%96%E8%AE%B0%E5%BD%95/</link>
         <pubDate>Tue, 09 Jun 2026 22:59:50 +0800</pubDate>
         
-        <guid>https://bobqaq003.github.io/Kuka-hugo/p/linux-ubuntu26.04lts%E7%BE%8E%E5%8C%96%E6%97%A5%E5%BF%97/</guid>
+        <guid>https://bobqaq003.github.io/Kuka-hugo/p/linux-ubuntu26.04lts%E7%BE%8E%E5%8C%96%E8%AE%B0%E5%BD%95/</guid>
         <description>&lt;blockquote class=&#34;alert alert-note&#34;&gt;
-    &lt;p&gt;桌面是 &lt;strong&gt;Niri+DMS&lt;/strong&gt;，记录配置美化的过程终的问题&lt;/p&gt;&lt;/blockquote&gt;
-</description>
+    &lt;p&gt;桌面是 &lt;strong&gt;Niri+DMS&lt;/strong&gt;，记录配置美化的过程中的问题&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;系统字体&#34;&gt;系统字体
+&lt;/h2&gt;&lt;h3 id=&#34;默认情况&#34;&gt;默认情况
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;组件&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;字体&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;GNOME 界面&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Adwaita Sans 11&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;系统等宽&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ubuntu Sans Mono 11&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ptyxis&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Ubuntu Sans Mono 11（跟随系统）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Kitty&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;DejaVu Sans Mono 11pt（默认）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;系统界面（包括时间、窗口标题等）、登录界面GDM、终端界面的字体都是独立的，同时Fcitx5的候选字界面也是独立的&lt;/p&gt;
+&lt;p&gt;这里我设置系统界面为霞骛文楷&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;gsettings &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; org.gnome.desktop.interface font-name &lt;span class=&#34;s1&#34;&gt;&amp;#39;LXGW WenKai Medium 11&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;gsettings &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; org.gnome.desktop.interface document-font-name &lt;span class=&#34;s1&#34;&gt;&amp;#39;LXGW WenKai Medium 12&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;gsettings &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; org.gnome.desktop.wm.preferences titlebar-font &lt;span class=&#34;s1&#34;&gt;&amp;#39;LXGW WenKai Medium 11&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其他的单独设置&lt;/p&gt;
+&lt;h2 id=&#34;kitty&#34;&gt;Kitty
+&lt;/h2&gt;&lt;p&gt;配置文件通常在&lt;code&gt;~/.config/kitty/kitty.conf&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;shell提示符&#34;&gt;Shell提示符
+&lt;/h3&gt;&lt;h4 id=&#34;问题&#34;&gt;问题
+&lt;/h4&gt;&lt;p&gt;Kitty / Alacritty 终端中，&lt;code&gt;Shell&lt;/code&gt; 提示符（如 &lt;code&gt;kuka@VM26:~$&lt;/code&gt;）没有颜色，但终端模拟器本身（VSCode_Dark 主题）配色正常。&lt;/p&gt;
+&lt;h4 id=&#34;原因&#34;&gt;原因
+&lt;/h4&gt;&lt;p&gt;&lt;code&gt;Shell&lt;/code&gt; 提示符的颜色由 shell（bash）的 &lt;code&gt;PS1&lt;/code&gt; 环境变量决定。目前用的是&lt;code&gt;Bash&lt;/code&gt;，查看&lt;code&gt;.bashrc&lt;/code&gt; 中的彩色提示符控制逻辑：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 根据 TERM 环境变量判断是否启用颜色&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$TERM&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; in
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    xterm-color&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;*-256color&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;color_prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;yes&lt;span class=&#34;p&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;esac&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 根据 color_prompt 选择带颜色/不带颜色的 PS1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$color_prompt&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; yes &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;PS1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;PS1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;${debian_chroot:+($debian_chroot)}\u@\h:\w\$ &amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;其中的判断依据是&lt;code&gt;$TERM&lt;/code&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Kitty 默认设置 &lt;code&gt;TERM=xterm-kitty&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Alacritty 默认设置 &lt;code&gt;TERM=alacritty&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;两者都不匹配 &lt;code&gt;xterm-color&lt;/code&gt; 或 &lt;code&gt;*-256color&lt;/code&gt;，所以 &lt;code&gt;color_prompt&lt;/code&gt; 为 &lt;code&gt;no&lt;/code&gt;，回退到无颜色的 PS1&lt;/p&gt;
+&lt;h4 id=&#34;解决&#34;&gt;解决
+&lt;/h4&gt;&lt;p&gt;在 &lt;code&gt;.bashrc&lt;/code&gt; 的 TERM 匹配列表中添加新的终端类型：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;xterm-color&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;*-256color&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;xterm-kitty&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;alacritty&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;color_prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;yes&lt;span class=&#34;p&#34;&gt;;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;字体&#34;&gt;字体
+&lt;/h3&gt;&lt;p&gt;如果用 &lt;code&gt;font_family LXGW WenKai Medium&lt;/code&gt; 作为主字体，终端显示的字符会出现空格。&lt;/p&gt;
+&lt;p&gt;所以采用双字体方案，也就是主字体用Nerd Font，CJK 区域通过 &lt;code&gt;symbol_map&lt;/code&gt; 映射到霞鹜文楷：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;font_family      Inconsolata Nerd Font
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;symbol_map U+4E00-U+9FFF,U+3400-U+4DBF,U+20000-U+2A6DF,U+2A700-U+2EBEF LXGW WenKai
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;标题栏&#34;&gt;标题栏
+&lt;/h3&gt;&lt;p&gt;不喜欢系统的窗口标题栏，通过开启&lt;code&gt;hide_window_decorations&lt;/code&gt; 隐藏&lt;/p&gt;
+&lt;p&gt;采用Kitty自带的 &lt;code&gt;Tab Bar&lt;/code&gt; ：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_edge       top
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_align      center
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_min_tabs   &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_title_template &lt;span class=&#34;s2&#34;&gt;&amp;#34;{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最终修改后的Kitty配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;font_family      Inconsolata Nerd Font
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;bold_font        auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;italic_font      auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;bold_italic_font auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;font_size        12.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;symbol_map       U+4E00-U+9FFF,U+3400-U+4DBF,U+20000-U+2A6DF,U+2A700-U+2EBEF LXGW WenKai
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;modify_font      cell_height 6px
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;hide_window_decorations yes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_edge     top
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_align    center
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_bar_min_tabs &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;tab_title_template &lt;span class=&#34;s2&#34;&gt;&amp;#34;{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         </item>
         <item>
         <title>[Linux] Ubuntu24.04lts下切换暗/亮色主题，icon不会跟随变换</title>
